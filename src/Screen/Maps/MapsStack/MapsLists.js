@@ -6,7 +6,7 @@ import styled from "styled-components";
 function MapsLists({navigation}) {
   return (
     <MapsWrap>
-      <ImageButton title="버튼" onPress = {() => navigation.push('MapsDetail')}/>
+      <ImageButton title="버튼" onPress = {() => navigation.push('MapsListsDetail')}/>
     </MapsWrap>
   );
 }

@@ -3,24 +3,15 @@ import React from 'react';
 import {Text , View , Button} from 'react-native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import styled from "styled-components";
-import MapsLists from './MapsStack/MapsLists';
-import MapsListsDetail from './MapsStack/MapsListsDetail';
 
 const Stack = createNativeStackNavigator();
 
 
-function Maps() {
+function Maps({navigation}) {
   return (
-    <Stack.Navigator initialRouteName="MapsLists">
-      <Stack.Screen
-        name="MapsLists"
-        component={MapsLists}
-      />
-      <Stack.Screen
-        name="MapsDetail"
-        component={MapsListsDetail}
-      />
-    </Stack.Navigator>
+    <MapsWrap>
+      <ImageButton title="버튼" onPress = {() => navigation.push('MapsLists')}/>
+    </MapsWrap>
   );
 }
 

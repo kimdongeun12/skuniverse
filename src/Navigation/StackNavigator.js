@@ -5,8 +5,13 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 // import Icon from 'react-native-vector-icons/Ionicons';
 import HomeScreen from '../Screen/Home/Home';
+
 import AlignmentScreen from '../Screen/Alignment/Alignment';
+
 import MapsScreen from '../Screen/Maps/Maps';
+import MapsLists from '../Screen/Maps/MapsStack/MapsLists';
+import MapsListsDetail from '../Screen/Maps/MapsStack/MapsListsDetail';
+
 import MypageScreen from '../Screen/Mypage/Mypage';
 
 const Stack = createNativeStackNavigator();
@@ -64,6 +69,20 @@ const MapsStackNavigator = () => {
         options={({navigation, route}) => ({
           headerLeft: null,
           headerTitle: '앱이름',
+        })}
+      />
+      <MapsStack.Screen
+        name="MapsLists"
+        component={MapsLists}
+        options={({navigation, route}) => ({
+          headerLeft: null,
+        })}
+      />
+      <MapsStack.Screen
+        name="MapsListsDetail"
+        component={MapsListsDetail}
+        options={({navigation, route}) => ({
+          headerLeft: null,
         })}
       />
     </Stack.Navigator>
