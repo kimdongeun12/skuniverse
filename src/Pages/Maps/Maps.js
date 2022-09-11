@@ -1,21 +1,21 @@
 
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {Text , View} from 'react-native';
+import styled from "styled-components";
 
 function Maps() {
   return (
-    <View style={styles.container}>
+    <MapsWrap>
       <Text>Maps</Text>
-    </View>
+    </MapsWrap>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
+
+const MapsWrap = styled.View`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+`
 
 export default Maps;

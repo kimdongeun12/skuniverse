@@ -1,34 +1,21 @@
 
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-
+import {Text , View} from 'react-native';
+import styled from "styled-components";
 
 function Main() {
   return (
-    <View style={styles.container}>
+    <MainWrap>
       <Text>Main</Text>
-    </View>
+    </MainWrap>
   );
 }
 
 
-
-// class Main extends React.Component {
-//   render() {
-//     return (
-//       <View style={styles.container}>
-//         <Text>Main</Text>
-//       </View>
-//     );
-//   }
-// }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
+const MainWrap = styled.View`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+`
 
 export default Main;
