@@ -4,14 +4,16 @@ import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 // import Icon from 'react-native-vector-icons/Ionicons';
-import Home from '../Screen/Home/Home';
-import Alignment from '../Screen/Alignment/Alignment';
-import Maps from '../Screen/Maps/Maps';
-import MapsLists from '../Screen/Maps/MapsStack/MapsLists';
-import MapsDetail from '../Screen/Maps/MapsStack/MapsDetail';
-import Mypage from '../Screen/Mypage/Mypage';
+import HomeScreen from '../Screen/Home/Home';
+import AlignmentScreen from '../Screen/Alignment/Alignment';
+import MapsScreen from '../Screen/Maps/Maps';
+import MypageScreen from '../Screen/Mypage/Mypage';
 
 const Stack = createNativeStackNavigator();
+const HomeStack = createNativeStackNavigator();
+const AlignmentStack = createNativeStackNavigator();
+const MapsStack = createNativeStackNavigator();
+const MypageStack = createNativeStackNavigator();
 
 const screenOptionStyle = {
   headerStyle: {
@@ -21,10 +23,18 @@ const screenOptionStyle = {
   headerBackTitle: "Back",
 };
 
+
 const HomeStackNavigator = () => {
   return (
     <Stack.Navigator screenOptions={screenOptionStyle}>
-      <Stack.Screen name="Home" component={Home} />
+      <HomeStack.Screen 
+        name="Home" 
+        component={HomeScreen} 
+        options={({navigation, route}) => ({
+          headerLeft: null,
+          headerTitle: '앱이름',
+        })}
+      />
     </Stack.Navigator>
   );
 }
@@ -32,21 +42,29 @@ const HomeStackNavigator = () => {
 const AlignmentStackNavigator = () => {
   return (
     <Stack.Navigator screenOptions={screenOptionStyle}>
-      <Stack.Screen name="Alignment" component={Alignment} />
+      <AlignmentStack.Screen 
+        name="Alignment" 
+        component={AlignmentScreen} 
+        options={({navigation, route}) => ({
+          headerLeft: null,
+          headerTitle: '앱이름',
+        })}
+        
+      />
     </Stack.Navigator>
   );
 }
 
 const MapsStackNavigator = () => {
   return (
-    <Stack.Navigator screenOptions={screenOptionStyle} initialRouteName="MapsLists">
-      <Stack.Screen
-        name="MapsLists"
-        component={MapsLists}
-      />
-      <Stack.Screen
-        name="MapsDetail"
-        component={MapsDetail}
+    <Stack.Navigator screenOptions={screenOptionStyle}>
+      <MapsStack.Screen
+        name="Maps"
+        component={MapsScreen}
+        options={({navigation, route}) => ({
+          headerLeft: null,
+          headerTitle: '앱이름',
+        })}
       />
     </Stack.Navigator>
   );
@@ -55,7 +73,14 @@ const MapsStackNavigator = () => {
 const MypageStackNavigator = () => {
   return (
     <Stack.Navigator screenOptions={screenOptionStyle}>
-      <Stack.Screen name="Mypage" component={Mypage} />
+      <MypageStack.Screen 
+        name="Mypage" 
+        component={MypageScreen} 
+        options={({navigation, route}) => ({
+          headerLeft: null,
+          headerTitle: '앱이름',
+        })}
+      />
     </Stack.Navigator>
   );
 }

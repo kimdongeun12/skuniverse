@@ -8,11 +8,11 @@ import { HomeStackNavigator, AlignmentStackNavigator ,MapsStackNavigator , Mypag
 
 const Tab = createBottomTabNavigator();
 
-const BottomTabNavigator = () => {
+const BottomTabNavigator = ({navigation}) => {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator initialRouteName="HomeStack">
       <Tab.Screen 
-      name="Home" 
+      name="HomeStack" 
       component={HomeStackNavigator} 
       options={{
         headerShown: false,
@@ -22,31 +22,31 @@ const BottomTabNavigator = () => {
         ),
       }}
       />
-      <Tab.Screen name="Alignment" 
+      <Tab.Screen name="AlignmentStack" 
       component={AlignmentStackNavigator} 
       options={{
         headerShown: false,
-        title: '홈',
+        title: '맞춤검색',
         tabBarIcon: ({color, size}) => (
           <Icon name="filter-outline" color={color} size={size} />
         ),
       }}
       />
-      <Tab.Screen name="Maps" 
+      <Tab.Screen name="MapsStack" 
       component={MapsStackNavigator} 
       options={{
         headerShown: false,
-        title: '홈',
+        title: '지도검색',
         tabBarIcon: ({color, size}) => (
           <Icon name="map-outline" color={color} size={size} />
         ),
       }}
       />
-      <Tab.Screen name="Mypage" 
+      <Tab.Screen name="MypageStack" 
       component={MypageStackNavigator} 
       options={{
         headerShown: false,
-        title: '홈',
+        title: '마이페이지',
         tabBarIcon: ({color, size}) => (
           <Icon name="person-circle" color={color} size={size} />
         ),

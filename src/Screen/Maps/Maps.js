@@ -4,7 +4,7 @@ import {Text , View , Button} from 'react-native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import styled from "styled-components";
 import MapsLists from './MapsStack/MapsLists';
-import MapsDetail from './MapsStack/MapsDetail';
+import MapsListsDetail from './MapsStack/MapsListsDetail';
 
 const Stack = createNativeStackNavigator();
 
@@ -12,14 +12,14 @@ const Stack = createNativeStackNavigator();
 function Maps() {
   return (
     <Stack.Navigator initialRouteName="MapsLists">
-      {/* <Stack.Screen
+      <Stack.Screen
         name="MapsLists"
         component={MapsLists}
       />
       <Stack.Screen
         name="MapsDetail"
-        component={MapsDetail}
-      /> */}
+        component={MapsListsDetail}
+      />
     </Stack.Navigator>
   );
 }
