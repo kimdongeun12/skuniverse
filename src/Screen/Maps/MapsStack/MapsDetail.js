@@ -1,12 +1,12 @@
 
 import React from 'react';
-import {Text , View} from 'react-native';
+import {Text , View , Button} from 'react-native';
 import styled from "styled-components";
 
-function Maps() {
+function MapsDetail({navigator}) {
   return (
     <MapsWrap>
-      <Text>Maps</Text>
+      <Text>디테일 입니다.</Text>
     </MapsWrap>
   );
 }
@@ -18,4 +18,5 @@ const MapsWrap = styled.View`
   align-items: center;
 `
 
-export default Maps;
+
+export default MapsDetail;
