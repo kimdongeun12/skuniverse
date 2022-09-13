@@ -83,14 +83,17 @@ const WrapCOL = styled.View`
   padding: 16px;
 `
 const TextStyle = styled.Text`
+  fontSize: 20;
   color: 'rgb(0,0,0)';
   padding: 10px;
 `
 const TextStyle_tel_email = styled.Text`
+  fontSize: 15;
   color: 'rgb(0,0,0)';
   padding: 10px;
 `
 const TextStyle_SWversion = styled.Text`
+  fontSize: 14;
   color: 'rgb(45,45,40)';
   padding: 10px;
 `
