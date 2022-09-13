@@ -16,6 +16,10 @@ const MapLists = [
     id: 3,
     title: "마포구",
   },
+  {
+    id: 4,
+    title: "집가고싶다",
+  },
 ];
 
 const MapListItem = ({navigation, title , width}) => (
@@ -30,7 +34,6 @@ const MapListItem = ({navigation, title , width}) => (
 function Maps({navigation}) {
   const [containerWidth, setContainerWidth] = useState(0);
 
-  const margins = 16 * 2;
   const numColumns = 2;
   return (
     <MapsWrap horizontal={false}>
@@ -42,7 +45,7 @@ function Maps({navigation}) {
             <MapListItem
             navigation = {navigation}
             title={item.title}
-            width={(containerWidth - margins) / numColumns}
+            width={containerWidth / numColumns}
           />
           )}
           keyExtractor={item => item.id}
@@ -54,7 +57,7 @@ function Maps({navigation}) {
 }
 
 
-const MapsWrap = styled.ScrollView`
+const MapsWrap = styled.View`
   flex: 1;
   width: 100%;
   padding: 16px 8px 40px;
@@ -67,7 +70,7 @@ const ListsItem = styled.FlatList`
   flex: 1;
 `
 const ImageBtnWrap = styled.View`
-  width: ${(props) => props.width + "px"};
+  width: ${(props) => props.width}px;
   padding: 0 8px 16px;
 `
 
