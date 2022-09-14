@@ -1,12 +1,13 @@
 
 import React from 'react';
-import {Button, Text , View, Alert, StyleSheet, Linking} from 'react-native';
+import {Button, Text , View, Alert, StyleSheet, Linking, TouchableOpacity} from 'react-native';
 import styled from "styled-components";
 import storage from "./../../storage"
 import axios from 'axios';
 
 const ca_no = 1; // 문화예술회관 고유번호
 const url = 'https://www.instagram.com/arkokorea/';   // 한국문화예술위원회 instagram url
+
 
 function Mypage() {
   //const url = `${storage.server}/culture-arts/${ca_no}`;
@@ -36,11 +37,13 @@ function Mypage() {
         </WrapCOL>
       </View>
       <View style={styles.item3}>
-        <Button_term
-          title= "문화누리카드 이용약관"
+        {/* <ImageButtons title="" onPress = {() => navigation.navigate('이용약관')}>
+          <Text>이용약관</Text>
+        </ImageButtons> */}
+        <TextStyle_terms_logout>문화누리카드 이용약관</TextStyle_terms_logout>
+          {/* title= "문화누리카드 이용약관"
           color="#E91E63"
-          onPress = {() => Alert.alert("[문화누리카드 이용약관]", "블라블라블라블라블라블라")}
-        />
+          onPress = {() => Alert.alert("[문화누리카드 이용약관]", "블라블라블라블라블라블라")} */}
       </View>
     </View>
   );
@@ -76,6 +79,14 @@ function Mypage() {
 //     console.log(err);
 //   }
 // };
+
+const ImageButtons = styled.TouchableOpacity`
+  flex: 1;
+  background-color: #ffffff;
+  padding: 16px;
+  margin-top: 8px;
+  border-radius: 8px;
+`
 
 // - layout을 가로로 3등분
 const styles = StyleSheet.create({
@@ -157,6 +168,7 @@ const TextStyle_SWversion = styled.Text`
   padding: 10px;
 `
 
+// 후에 이용약관은 ... text button 식으로 둘 생각
 const Button_term = styled.Button`
   padding: 3px;
   font-size: 8px;

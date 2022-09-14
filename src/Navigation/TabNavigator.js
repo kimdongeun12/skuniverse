@@ -3,7 +3,7 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import Icon from 'react-native-vector-icons/Ionicons';
-import { HomeStackNavigator, AlignmentStackNavigator ,MapsStackNavigator , MypageStackNavigator } from "./StackNavigator";
+import { LoginStackNavigator, HomeStackNavigator, AlignmentStackNavigator ,MapsStackNavigator , MypageStackNavigator} from "./StackNavigator";    // hong-da-hyeon 작업
 
 
 const Tab = createBottomTabNavigator();
@@ -11,6 +11,16 @@ const Tab = createBottomTabNavigator();
 const BottomTabNavigator = ({navigation}) => {
   return (
     <Tab.Navigator initialRouteName="HomeStack">
+      <Tab.Screen name="LoginStack" 
+      component={LoginStackNavigator} 
+      options={{
+        headerShown: false,
+        title: '로그인',
+        tabBarIcon: ({color, size}) => (
+          <Icon name="person-circle" color={color} size={size} />
+        ),
+      }}
+      />
       <Tab.Screen 
       name="HomeStack" 
       component={HomeStackNavigator} 
