@@ -36,7 +36,11 @@ function Mypage() {
         </WrapCOL>
       </View>
       <View style={styles.item3}>
-        <TextStyle_terms_logout>문화누리카드 이용약관</TextStyle_terms_logout>
+        <Button_term
+          title= "문화누리카드 이용약관"
+          color="#E91E63"
+          onPress = {() => Alert.alert("[문화누리카드 이용약관]", "블라블라블라블라블라블라")}
+        />
       </View>
     </View>
   );
@@ -151,6 +155,12 @@ const TextStyle_SWversion = styled.Text`
   font-size: 14px;
   color: #121212;
   padding: 10px;
+`
+
+const Button_term = styled.Button`
+  padding: 3px;
+  font-size: 8px;
+  font-weight: 100;
 `
 
 export default Mypage;
