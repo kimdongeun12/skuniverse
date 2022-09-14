@@ -1,26 +1,15 @@
 
-import React , {useState} from 'react';
-import {Text , View , Button , TouchableOpacity , FlatList} from 'react-native';
-import styled from "styled-components";
+import React , {useState , useEffect} from 'react';
+import {Text , View , Button , TouchableOpacity , FlatList , Picker} from 'react-native';
+import { Dropdown } from 'react-native-element-dropdown';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
-const MapLists = [
-  {
-    id: 1,
-    title: "강남구",
-  },
-  {
-    id: 2,
-    title: "노원구",
-  },
-  {
-    id: 3,
-    title: "마포구",
-  },
-  {
-    id: 4,
-    title: "집가고싶다",
-  },
-];
+import styled from "styled-components";
+import storage from "../../storage"
+import axios from 'axios';
+
+// const ca_no = 1; // 문화예술회관 고유번호
+
 
 const MapListItem = ({navigation, title , width}) => (
   <ImageBtnWrap width = {width}>
@@ -32,26 +21,87 @@ const MapListItem = ({navigation, title , width}) => (
 
 
 function Maps({navigation}) {
-  const [containerWidth, setContainerWidth] = useState(0);
 
+  const [containerWidth, setContainerWidth] = useState(0);
   const numColumns = 2;
+
+  const [MapLists, SetMapsLists] = useState([]);
+  const [SelectCategory , SetCategory] = useState('')
+  const url = `${storage.server}/culture-arts/city/${SelectCategory}`;
+  
+  
+  const SearchDetail = async (url) => {
+    try {
+      // console.log(url);
+      let GetData = await axios({
+        method: 'GET',
+        url: url,
+      })
+      // console.log(GetData.data)
+      GetData.data.map((item) => {
+        MapLists.push(item)
+      })
+    } catch(err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    SetCategory('')
+    SearchDetail(url)
+    console.log(MapLists)
+  }, [SelectCategory]);
+  
+  const data = [
+    { label: 'Item 1', value: '1' },
+    { label: 'Item 2', value: '2' },
+    { label: 'Item 3', value: '3' },
+    { label: 'Item 4', value: '4' },
+    { label: 'Item 5', value: '5' },
+    { label: 'Item 6', value: '6' },
+    { label: 'Item 7', value: '7' },
+    { label: 'Item 8', value: '8' },
+  ];
+  const [value, setValue] = useState(null);
+  // const [open, setOpen] = useState(false);
+  // const [value, setValue] = useState(null);
+  // const [items, setItems] = useState([
+  //   {label: 'Apple', value: 'apple'},
+  //   {label: 'Banana', value: 'banana'}
+  // ]);
+
   return (
     <MapsWrap horizontal={false}>
-      <ItemListWrap numColumns={2}>
+      <View>
+        <Dropdown
+          data={data}
+          search
+          maxHeight={300}
+          labelField="label"
+          valueField="value"
+          searchPlaceholder="Search..."
+          value={value}
+          search={false}
+          onChange={item => {
+            setValue(item.value);
+          }}
+        />
+      </View>
+      {/* <ItemListWrap numColumns={2}>
         <ListsItem
           data={MapLists}
           onLayout={e => setContainerWidth(e.nativeEvent.layout.width)}
           renderItem={({item}) => (
             <MapListItem
             navigation = {navigation}
-            title={item.title}
+            title={item.city_nm}
             width={containerWidth / numColumns}
           />
           )}
-          keyExtractor={item => item.id}
+          keyExtractor={(item , index) => index}
           numColumns={numColumns}
         />
-      </ItemListWrap>
+      </ItemListWrap> */}
     </MapsWrap>
   );
 }
@@ -60,7 +110,7 @@ function Maps({navigation}) {
 const MapsWrap = styled.View`
   flex: 1;
   width: 100%;
-  padding: 16px 8px 40px;
+  padding: 16px 8px 0;
 `
 const ItemListWrap = styled.View`
   flex: 1;
