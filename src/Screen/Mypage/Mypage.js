@@ -1,11 +1,12 @@
 
 import React from 'react';
-import {Button, Text , View, Alert, StyleSheet} from 'react-native';
+import {Button, Text , View, Alert, StyleSheet, Linking} from 'react-native';
 import styled from "styled-components";
 import storage from "./../../storage"
 import axios from 'axios';
 
 const ca_no = 1; // 문화예술회관 고유번호
+const url = 'https://www.instagram.com/arkokorea/';   // 한국문화예술위원회 instagram url
 
 function Mypage() {
   //const url = `${storage.server}/culture-arts/${ca_no}`;
@@ -21,11 +22,11 @@ function Mypage() {
           <ButtonwrapROW>
             <ImageButton
               title= "Facebook"
-              onPress={() => Alert.alert("facebook~")}
+              onPress={() => Linking.openURL('https://www.facebook.com/ARKO1004')}
             />
             <ImageButton
               title= "Instagram"
-              onPress={() => Alert.alert("instagram~")}
+              onPress={() => Linking.openURL('https://www.instagram.com/arkokorea')}
             />
           </ButtonwrapROW>
           <TextStyle_title>문화예술데이터재단</TextStyle_title>
