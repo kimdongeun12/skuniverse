@@ -1,30 +1,18 @@
 
-import React , {useState} from 'react';
-import {Text , View , Button , TouchableOpacity , FlatList} from 'react-native';
+import React , {useState , useEffect} from 'react';
+import {Text , View , Button , TouchableOpacity , FlatList , Picker} from 'react-native';
+import { Dropdown } from 'react-native-element-dropdown';
 import styled from "styled-components";
+import storage from "../../storage"
+import axios from 'axios';
 
-const MapLists = [
-  {
-    id: 1,
-    title: "강남구",
-  },
-  {
-    id: 2,
-    title: "노원구",
-  },
-  {
-    id: 3,
-    title: "마포구",
-  },
-  {
-    id: 4,
-    title: "집가고싶다",
-  },
-];
+// const ca_no = 1; // 문화예술회관 고유번호
 
-const MapListItem = ({navigation, title , width}) => (
+
+
+const MapListItem = ({navigation, title ,districtParams , width}) => (
   <ImageBtnWrap width = {width}>
-    <ImageButton title="" onPress = {() => navigation.push('MapsLists')}>
+    <ImageButton title="" onPress = {() => navigation.navigate('MapsLists' , {districtParams})}>
       <Text>{title}</Text>
     </ImageButton>
   </ImageBtnWrap>
@@ -32,23 +20,84 @@ const MapListItem = ({navigation, title , width}) => (
 
 
 function Maps({navigation}) {
-  const [containerWidth, setContainerWidth] = useState(0);
 
+  const [containerWidth, setContainerWidth] = useState(0);
   const numColumns = 2;
+
+  const [MapCityLists, SetMapCityLists] = useState([]);
+  const [MapDistrictLists, SetMapDistrictLists] = useState([]);
+  const [SelectCity , SetCity] = useState(11)
+  
+  const CityUrl = `${storage.server}/culture-arts/city/`;
+  const DistrictUrl = `${storage.server}/culture-arts/city/${SelectCity}`;
+  
+  
+  const SearchCityDetail = async (url) => {
+    try {
+      let GetData = await axios({
+        method: 'GET',
+        url: url,
+      })
+      SetMapCityLists(GetData.data)
+    } catch(err) {
+      console.log(err);
+    }
+  };
+
+  const SearchDistrictDetail = async (url) => {
+    try {
+      // console.log(url);
+      let GetData = await axios({
+        method: 'GET',
+        url: url,
+      })
+      SetMapDistrictLists(GetData.data)
+    } catch(err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    SetCity(11)
+    SearchCityDetail(CityUrl)
+    SearchDistrictDetail(DistrictUrl)
+  }, []);
+
+  useEffect(() => {
+    SearchDistrictDetail(DistrictUrl)
+  }, [SelectCity]);
+  
+
+
   return (
     <MapsWrap horizontal={false}>
+      <View>
+        <Dropdown
+          data={MapCityLists}
+          value={SelectCity}
+          maxHeight={300}
+          labelField="city_nm"
+          valueField="city_cd"
+          search={false}
+          onChange={item => {
+            console.log(item.city_cd)
+            SetCity(item.city_cd);
+          }}
+        />
+      </View>
       <ItemListWrap numColumns={2}>
         <ListsItem
-          data={MapLists}
+          data={MapDistrictLists}
           onLayout={e => setContainerWidth(e.nativeEvent.layout.width)}
           renderItem={({item}) => (
             <MapListItem
             navigation = {navigation}
-            title={item.title}
+            title={item.district_nm}
+            districtParams={item.district_cd}
             width={containerWidth / numColumns}
           />
           )}
-          keyExtractor={item => item.id}
+          keyExtractor={(item , index) => index}
           numColumns={numColumns}
         />
       </ItemListWrap>
@@ -60,7 +109,7 @@ function Maps({navigation}) {
 const MapsWrap = styled.View`
   flex: 1;
   width: 100%;
-  padding: 16px 8px 40px;
+  padding: 16px 8px 0;
 `
 const ItemListWrap = styled.View`
   flex: 1;

@@ -1,47 +1,48 @@
 
-import React from 'react';
+import React , {useState , useEffect} from 'react';
 import {Text , View , SafeAreaView , Button , TouchableOpacity, FlatList , Image , Dimensions} from 'react-native';
-const windowWidth = Dimensions.get('window').width;
 import styled from "styled-components";
+import storage from "../../../storage"
+import axios from 'axios';
 
 
-const ItemLists = [
-  {
-    id: 1,
-    title: "서울문화센터",
-    location : "지역명입니다."
-  },
-  {
-    id: 2,
-    title: "서울문화센터",
-    location : "지역명입니다."
-  },
-  {
-    id: 3,
-    title: "서울문화센터",
-    location : "지역명입니다."
-  },
-  {
-    id: 4,
-    title: "서울문화센터",
-    location : "지역명입니다."
-  },
-  {
-    id: 5,
-    title: "서울문화센터",
-    location : "지역명입니다."
-  },
-  {
-    id: 6,
-    title: "서울문화센터",
-    location : "지역명입니다."
-  },
-  {
-    id: 7,
-    title: "서울문화센터",
-    location : "지역명입니다."
-  },
-];
+// const ItemLists = [
+//   {
+//     id: 1,
+//     title: "서울문화센터",
+//     location : "지역명입니다."
+//   },
+//   {
+//     id: 2,
+//     title: "서울문화센터",
+//     location : "지역명입니다."
+//   },
+//   {
+//     id: 3,
+//     title: "서울문화센터",
+//     location : "지역명입니다."
+//   },
+//   {
+//     id: 4,
+//     title: "서울문화센터",
+//     location : "지역명입니다."
+//   },
+//   {
+//     id: 5,
+//     title: "서울문화센터",
+//     location : "지역명입니다."
+//   },
+//   {
+//     id: 6,
+//     title: "서울문화센터",
+//     location : "지역명입니다."
+//   },
+//   {
+//     id: 7,
+//     title: "서울문화센터",
+//     location : "지역명입니다."
+//   },
+// ];
 
 const MapItems = ({title , location}) => (
   <View>
@@ -63,9 +64,34 @@ const MapItems = ({title , location}) => (
   </View>
 );
 
-function MapsLists({navigation}) {
+function MapsLists({navigation , route}) {
+  const { districtParams, otherParam } = route.params;
+  const [ItemLists, SetSearch] = useState([]);
+  const url = `${storage.server}/culture-arts/district/${districtParams}/1`;
+  
+  
+  const searchDetail = async (url) => {
+    try {
+      // console.log(url);
+      let GetData = await axios({
+        method: 'GET',
+        url: url,
+      })
+      // console.log(GetData.data)
+      console.log(GetData.data)
+      SetSearch(GetData.data)
+    } catch(err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    searchDetail(url)
+  }, [otherParam]);
+
   return (
     <MapsWrap>
+      {console.log(ItemLists)}
       <BannerWrap>
         <BannerImage
         source={{
@@ -76,8 +102,8 @@ function MapsLists({navigation}) {
       </BannerWrap>
       <ListsItem
         data={ItemLists}
-        renderItem={({item}) => <MapItems title={item.title} location = {item.location}/>}
-        keyExtractor={item => item.id}
+        renderItem={({item}) => <MapItems title={item.fclty_nm} location = {item.addr}/>}
+        keyExtractor={item => item.ca_no}
       />
     </MapsWrap>
   );
@@ -85,7 +111,7 @@ function MapsLists({navigation}) {
 
 
 const MapsWrap = styled.View`
-  padding-top: 16px;
+  padding : 16px 8px 0;
   background-color: #ffffff;
   flex: 1;
 `
@@ -109,7 +135,7 @@ const ListsItemBtn = styled.TouchableOpacity`
   flex: 1;
   flex-direction: row;
   background-color: #ffffff;
-  padding: 0 16px 16px;
+  padding: 0 8px 16px;
   margin-top: 8px;
   border-radius: 8px;
   justify-content: center;
