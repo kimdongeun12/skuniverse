@@ -1,6 +1,6 @@
 
 import React from 'react';
-import {Button, Text , View, Alert} from 'react-native';
+import {Button, Text , View, Alert, StyleSheet} from 'react-native';
 import styled from "styled-components";
 import storage from "./../../storage"
 import axios from 'axios';
@@ -12,27 +12,32 @@ function Mypage() {
   //searchDetail(url);
   //console.log(url);
   return (
-       <MypageWrap>
-            {/* <Text>Its my page</Text> */}
-            <WrapCOL>
-              <ButtonwrapROW>
-                <ImageButton
-                title= "Facebook"
-                color= "color(45,45,40)"
-                onPress={() => Alert.alert("facebook~")}
-                />
-                <ImageButton
-                title= "Instagram"
-                color= "color(45,45,40)"
-                onPress={() => Alert.alert("instagram~")}
-                />
-              </ButtonwrapROW>
-              <TextStyle>문화예술데이터재단</TextStyle>
-              <TextStyle_tel_email>[TEL] 010-1234-5678</TextStyle_tel_email>
-              <TextStyle_tel_email>[EMAIL] abcd@gmail.com</TextStyle_tel_email>
-              <TextStyle_SWversion> 소프트웨어 버전 : v1.0 </TextStyle_SWversion>
-            </WrapCOL>
-       </MypageWrap>
+    <View style={styles.container}>
+      <View style={styles.item1}>
+        <TextStyle_terms_logout>로그아웃</TextStyle_terms_logout>
+      </View>
+      <View style={styles.item2}>
+        <WrapCOL>
+          <ButtonwrapROW>
+            <ImageButton
+              title= "Facebook"
+              onPress={() => Alert.alert("facebook~")}
+            />
+            <ImageButton
+              title= "Instagram"
+              onPress={() => Alert.alert("instagram~")}
+            />
+          </ButtonwrapROW>
+          <TextStyle_title>문화예술데이터재단</TextStyle_title>
+          <TextStyle_tel_email>[TEL] 010-1234-5678</TextStyle_tel_email>
+          <TextStyle_tel_email>[EMAIL] abcd@gmail.com</TextStyle_tel_email>
+          <TextStyle_SWversion> 소프트웨어 버전 : v1.0 </TextStyle_SWversion>
+        </WrapCOL>
+      </View>
+      <View style={styles.item3}>
+        <TextStyle_terms_logout>문화누리카드 이용약관</TextStyle_terms_logout>
+      </View>
+    </View>
   );
 }
 
@@ -67,39 +72,74 @@ function Mypage() {
 //   }
 // };
 
-const MypageWrap = styled.View`
-  flex: 1;
-  justify-content: flex-end;
-  align-items: flex-end;
-`
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'column', // 혹은 'column'
+  },
+  item1: {
+    flex:0.2,
+    alignItems: 'flex-start',     // layout에서 왼쪽에 배치
+    justifyContent: 'flex-end'    // layout에서 아래족에 배치
+  },
+  item2: {
+    flex: 2,
+    alignItems: 'flex-end',       // layout에서 오른쪽에 배치
+    justifyContent: 'flex-end'    // layout에서 아래쪽에 배치
+  },
+  item3: {
+    flex: 0.2,
+    alignItems: 'flex-start',     // layout에서 왼쪽에 배치
+    justifyContent: 'flex-end'    // layout에서 아래족에 배치
+  }
+});
+
+// const MypageWrap = styled.View`
+//   flex: 1;
+//   flexDirection: row;
+//   align-items: flex-end;
+// `
 
 const ImageButton = styled.Button`
   padding: 16px;
+  font-size: 10px;
+  font-weight: 100;
 `
 
 const ButtonwrapROW = styled.View`
-  padding: 16px;
+  align-items: flex-end;
   flexDirection: row;
 `
 
 const WrapCOL = styled.View`
   padding: 16px;
+  flexDirection: column;
+  align-itmes: flex-end;
 `
 
-const TextStyle = styled.Text`
-  fontSize: 20;
-  color: 'rgb(0,0,0)';
+const TextStyle_terms_logout = styled.Text`
+  padding: 12px;
+  font-size: 14px;
+  color: 'rgb(45,45,40)';
+  font-weight: 500;
+`
+
+const TextStyle_title = styled.Text`
+  font-size: 20px;
+  color: #121212;
+  font-weight: 600;
   padding: 10px;
 `
 
 const TextStyle_tel_email = styled.Text`
-  fontSize: 15;
-  color: 'rgb(0,0,0)';
+  font-size: 15px;
+  color: #121212;
+  font-weight: 500;
   padding: 10px;
 `
 
 const TextStyle_SWversion = styled.Text`
-  fontSize: 14;
+  font-size: 14px;
   color: 'rgb(45,45,40)';
   padding: 10px;
 `
