@@ -43,4 +43,5 @@ exports.clearData = async () => {
     // error reading value
     }
 }
+
 exports.server = `http://${config.server}:3000`;
