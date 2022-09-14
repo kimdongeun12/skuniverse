@@ -64,11 +64,10 @@ const MapItems = ({title , location}) => (
   </View>
 );
 
-function MapsLists({navigation}) {
-
+function MapsLists({navigation , route}) {
+  const { districtParams, otherParam } = route.params;
   const [ItemLists, SetSearch] = useState([]);
-  const [District , SetDistrict] = useState(0)
-  const url = `${storage.server}/culture-arts/${District}/1`;
+  const url = `${storage.server}/culture-arts/district/${districtParams}/1`;
   
   
   const searchDetail = async (url) => {
@@ -79,20 +78,20 @@ function MapsLists({navigation}) {
         url: url,
       })
       // console.log(GetData.data)
-      SetSearch(GetData.data)
       console.log(GetData.data)
+      SetSearch(GetData.data)
     } catch(err) {
       console.log(err);
     }
   };
 
   useEffect(() => {
-    SetDistrict(11050)
     searchDetail(url)
-  }, [SetDistrict]);
+  }, [otherParam]);
 
   return (
     <MapsWrap>
+      {console.log(ItemLists)}
       <BannerWrap>
         <BannerImage
         source={{
@@ -103,8 +102,8 @@ function MapsLists({navigation}) {
       </BannerWrap>
       <ListsItem
         data={ItemLists}
-        renderItem={({item}) => <MapItems title={item.title} location = {item.location}/>}
-        keyExtractor={item => item.id}
+        renderItem={({item}) => <MapItems title={item.fclty_nm} location = {item.addr}/>}
+        keyExtractor={item => item.ca_no}
       />
     </MapsWrap>
   );

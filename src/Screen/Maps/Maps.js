@@ -2,8 +2,6 @@
 import React , {useState , useEffect} from 'react';
 import {Text , View , Button , TouchableOpacity , FlatList , Picker} from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
-import AntDesign from 'react-native-vector-icons/AntDesign';
-
 import styled from "styled-components";
 import storage from "../../storage"
 import axios from 'axios';
@@ -11,9 +9,10 @@ import axios from 'axios';
 // const ca_no = 1; // 문화예술회관 고유번호
 
 
-const MapListItem = ({navigation, title , width}) => (
+
+const MapListItem = ({navigation, title ,districtParams , width}) => (
   <ImageBtnWrap width = {width}>
-    <ImageButton title="" onPress = {() => navigation.push('MapsLists')}>
+    <ImageButton title="" onPress = {() => navigation.navigate('MapsLists' , {districtParams})}>
       <Text>{title}</Text>
     </ImageButton>
   </ImageBtnWrap>
@@ -25,83 +24,83 @@ function Maps({navigation}) {
   const [containerWidth, setContainerWidth] = useState(0);
   const numColumns = 2;
 
-  const [MapLists, SetMapsLists] = useState([]);
-  const [SelectCategory , SetCategory] = useState('')
-  const url = `${storage.server}/culture-arts/city/${SelectCategory}`;
+  const [MapCityLists, SetMapCityLists] = useState([]);
+  const [MapDistrictLists, SetMapDistrictLists] = useState([]);
+  const [SelectCity , SetCity] = useState(11)
+  
+  const CityUrl = `${storage.server}/culture-arts/city/`;
+  const DistrictUrl = `${storage.server}/culture-arts/city/${SelectCity}`;
   
   
-  const SearchDetail = async (url) => {
+  const SearchCityDetail = async (url) => {
+    try {
+      let GetData = await axios({
+        method: 'GET',
+        url: url,
+      })
+      SetMapCityLists(GetData.data)
+    } catch(err) {
+      console.log(err);
+    }
+  };
+
+  const SearchDistrictDetail = async (url) => {
     try {
       // console.log(url);
       let GetData = await axios({
         method: 'GET',
         url: url,
       })
-      // console.log(GetData.data)
-      GetData.data.map((item) => {
-        MapLists.push(item)
-      })
+      SetMapDistrictLists(GetData.data)
     } catch(err) {
       console.log(err);
     }
   };
 
   useEffect(() => {
-    SetCategory('')
-    SearchDetail(url)
-    console.log(MapLists)
-  }, [SelectCategory]);
+    SetCity(11)
+    SearchCityDetail(CityUrl)
+    SearchDistrictDetail(DistrictUrl)
+  }, []);
+
+  useEffect(() => {
+    SearchDistrictDetail(DistrictUrl)
+  }, [SelectCity]);
   
-  const data = [
-    { label: 'Item 1', value: '1' },
-    { label: 'Item 2', value: '2' },
-    { label: 'Item 3', value: '3' },
-    { label: 'Item 4', value: '4' },
-    { label: 'Item 5', value: '5' },
-    { label: 'Item 6', value: '6' },
-    { label: 'Item 7', value: '7' },
-    { label: 'Item 8', value: '8' },
-  ];
-  const [value, setValue] = useState(null);
-  // const [open, setOpen] = useState(false);
-  // const [value, setValue] = useState(null);
-  // const [items, setItems] = useState([
-  //   {label: 'Apple', value: 'apple'},
-  //   {label: 'Banana', value: 'banana'}
-  // ]);
+
 
   return (
     <MapsWrap horizontal={false}>
       <View>
         <Dropdown
-          data={data}
-          search
+          data={MapCityLists}
+          value={SelectCity}
           maxHeight={300}
-          labelField="label"
-          valueField="value"
-          searchPlaceholder="Search..."
-          value={value}
+          labelField="city_nm"
+          valueField="city_cd"
           search={false}
           onChange={item => {
-            setValue(item.value);
+            console.log(item.city_cd)
+            SetCity(item.city_cd);
           }}
         />
       </View>
-      {/* <ItemListWrap numColumns={2}>
+      <ItemListWrap numColumns={2}>
         <ListsItem
-          data={MapLists}
+          data={MapDistrictLists}
           onLayout={e => setContainerWidth(e.nativeEvent.layout.width)}
           renderItem={({item}) => (
             <MapListItem
             navigation = {navigation}
-            title={item.city_nm}
+            title={item.district_nm}
+            districtParams={item.district_cd}
             width={containerWidth / numColumns}
           />
           )}
           keyExtractor={(item , index) => index}
           numColumns={numColumns}
         />
-      </ItemListWrap> */}
+      </ItemListWrap>
     </MapsWrap>
   );
 }
