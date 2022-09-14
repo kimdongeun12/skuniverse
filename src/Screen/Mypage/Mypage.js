@@ -31,7 +31,7 @@ function Mypage() {
           <TextStyle_title>문화예술데이터재단</TextStyle_title>
           <TextStyle_tel_email>[TEL] 010-1234-5678</TextStyle_tel_email>
           <TextStyle_tel_email>[EMAIL] abcd@gmail.com</TextStyle_tel_email>
-          <TextStyle_SWversion> 소프트웨어 버전 : v1.0 </TextStyle_SWversion>
+          <TextStyle_SWversion>소프트웨어 버전 : v1.0 </TextStyle_SWversion>
         </WrapCOL>
       </View>
       <View style={styles.item3}>
@@ -72,6 +72,7 @@ function Mypage() {
 //   }
 // };
 
+// - layout을 가로로 3등분
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -100,23 +101,27 @@ const styles = StyleSheet.create({
 //   align-items: flex-end;
 // `
 
+// facebook, instagram button
 const ImageButton = styled.Button`
   padding: 16px;
   font-size: 10px;
   font-weight: 100;
 `
 
+// button 2개를 row로 묶기
 const ButtonwrapROW = styled.View`
   align-items: flex-end;
   flexDirection: row;
 `
 
+// button + text 묶기 (좌로 정렬)
 const WrapCOL = styled.View`
   padding: 16px;
   flexDirection: column;
   align-itmes: flex-end;
 `
 
+// 이용약관, 로그아웃 text style
 const TextStyle_terms_logout = styled.Text`
   padding: 12px;
   font-size: 14px;
@@ -124,6 +129,7 @@ const TextStyle_terms_logout = styled.Text`
   font-weight: 500;
 `
 
+// '문화예술데이터재단' text style
 const TextStyle_title = styled.Text`
   font-size: 20px;
   color: #121212;
@@ -131,6 +137,7 @@ const TextStyle_title = styled.Text`
   padding: 10px;
 `
 
+// tel, email text style
 const TextStyle_tel_email = styled.Text`
   font-size: 15px;
   color: #121212;
@@ -138,9 +145,10 @@ const TextStyle_tel_email = styled.Text`
   padding: 10px;
 `
 
+// sw version text style
 const TextStyle_SWversion = styled.Text`
   font-size: 14px;
-  color: 'rgb(45,45,40)';
+  color: #121212;
   padding: 10px;
 `
 
