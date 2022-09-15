@@ -1,6 +1,6 @@
 
 import React , {useState , useEffect} from 'react';
-import {Text , View , Button , TouchableOpacity , FlatList , Picker} from 'react-native';
+import {Text , View , Button , TouchableOpacity , FlatList , Image} from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
 import styled from "styled-components";
 import storage from "../../storage"
@@ -10,14 +10,21 @@ import axios from 'axios';
 
 
 
-const MapListItem = ({navigation, title ,districtParams , width}) => (
+const MapListItem =  ({navigation , districtParams , imageUrl , title , width}) => (
   <ImageBtnWrap width = {width}>
-    <ImageButton title="" onPress = {() => navigation.navigate('MapsLists' , {districtParams})}>
-      <Text>{title}</Text>
+    <ImageButton title="" onPress = {() => navigation.navigate('MapsLists' , {districtParams , imageUrl})}>
+      <ItemImgWrap>
+        <ItemImage
+        source={{
+          uri: `https://district-symbols.s3.ap-northeast-2.amazonaws.com/symbols/${imageUrl.itemCity}/${imageUrl.itemDistrict}.jpg`,
+        }}
+        resizeMode= "contain"
+        />
+      </ItemImgWrap>
+      <ImageText>{title}</ImageText>
     </ImageButton>
   </ImageBtnWrap>
 );
-
 
 function Maps({navigation}) {
 
@@ -93,6 +100,7 @@ function Maps({navigation}) {
             <MapListItem
             navigation = {navigation}
             title={item.district_nm}
+            imageUrl = { {itemCity : SelectCity , itemDistrict : item.district_cd}}
             districtParams={{district_cd : item.district_cd , district_nm : item.district_nm }}
             width={containerWidth / numColumns}
           />
@@ -129,6 +137,22 @@ const ImageButton = styled.TouchableOpacity`
   padding: 16px;
   margin-top: 8px;
   border-radius: 8px;
+`
+
+const ItemImgWrap = styled.View`
+  flex: 1;
+  height: 100px;
+`
+
+const ItemImage = styled.Image`
+  width: 100%;
+  height: 100%;
+`
+
+const ImageText = styled.Text`
+  padding-top: 8px;
+  width: 100%;
+  text-align: center;
 `
 
 export default Maps;
