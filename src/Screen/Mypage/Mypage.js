@@ -41,7 +41,9 @@ function Mypage({navigation}) {
             </ImageButton>
           </ButtonwrapROW>
 
-          <TextStyleTitle>문화예술데이터재단</TextStyleTitle>
+          <TextStyleButton title="" onPress = {() => Linking.openURL('https://www.arko.or.kr/')}>
+            <TextStyleText>문화예술데이터재단</TextStyleText>
+          </TextStyleButton>
           <TextStyleTelEmail>[TEL] 010-1234-5678</TextStyleTelEmail>
           <TextStyleTelEmail>[EMAIL] abcd@gmail.com</TextStyleTelEmail>
           <TextStyleSWversion>소프트웨어 버전 : v1.0 </TextStyleSWversion>
@@ -163,12 +165,17 @@ const TextStyleFaceInsta = styled.Text`
   font-weight: bold;
 `
 
+// 문화예술데이터재단 button
+const TextStyleButton = styled.TouchableOpacity`
+`
+
 // '문화예술데이터재단' text style
-const TextStyleTitle = styled.Text`
+const TextStyleText = styled.Text`
   font-size: 20px;
   color: #0091d4;
   font-weight: 600;
   padding: 10px;
+  text-decoration: underline;
 `
 
 // tel, email text style

@@ -3,6 +3,7 @@
 import React from 'react';
 import {Text , View, TextInput, StyleSheet, Button, TouchableOpacity} from 'react-native';
 import styled from "styled-components";
+import storage from "../../storage"
 
 const ToNewLogin = ({navigation}) => (
     <ImageBtnWrap>
@@ -29,14 +30,13 @@ const Login = ({navigation}) => {
                 style={StyleLoginBox.input1}
                 onChangeText={onChangeText}
                 value={text}
-                placeholder=""
             />
             <TextInput
                 style={StyleLoginBox.input2}
                 onChangeText={onChangeNumber}
                 value={number}
-                placeholder=""
                 keyboardType="numeric"
+                // secureTextEntry={true} --> 비번 * 해주는 것 같긴 하지만..
             />
 
             <LoginButton>
