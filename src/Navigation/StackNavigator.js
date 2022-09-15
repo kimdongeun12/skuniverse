@@ -6,11 +6,12 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 // import Icon from 'react-native-vector-icons/Ionicons';
 import HomeScreen from '../Screen/Home/Home';
 
+import ItemDetailScreen from '../Components/ItemDetail'
+
 import AlignmentScreen from '../Screen/Alignment/Alignment';
 
 import MapsScreen from '../Screen/Maps/Maps';
 import MapsLists from '../Screen/Maps/MapsStack/MapsLists';
-import MapsListsDetail from '../Screen/Maps/MapsStack/MapsListsDetail';
 
 import MypageScreen from '../Screen/Mypage/Mypage';
 
@@ -96,13 +97,15 @@ const MapsStackNavigator = () => {
         component={MapsLists}
         options={({navigation, route}) => ({
           headerLeft: null,
+          headerTitle: route.params.districtParams.district_nm,
         })}
       />
       <MapsStack.Screen
-        name="MapsListsDetail"
-        component={MapsListsDetail}
+        name="ItemDetail"
+        component={ItemDetailScreen}
         options={({navigation, route}) => ({
-          headerLeft: null,
+          headerTitle: route.params.detailParams.fclty_nm,
+          // headerTitle: 'sss',
         })}
       />
     </Stack.Navigator>

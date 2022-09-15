@@ -93,7 +93,7 @@ function Maps({navigation}) {
             <MapListItem
             navigation = {navigation}
             title={item.district_nm}
-            districtParams={item.district_cd}
+            districtParams={{district_cd : item.district_cd , district_nm : item.district_nm }}
             width={containerWidth / numColumns}
           />
           )}
