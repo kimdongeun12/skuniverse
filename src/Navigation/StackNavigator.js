@@ -13,6 +13,7 @@ import MapsLists from '../Screen/Maps/MapsStack/MapsLists';
 import MapsListsDetail from '../Screen/Maps/MapsStack/MapsListsDetail';
 
 import MypageScreen from '../Screen/Mypage/Mypage';
+import TermpageScreen from '../Screen/Mypage/TermDetail/Termpage';             // hong-da-hyeon 작업
 
 import LoginScreen from '../Screen/Login/Login';            // hong-da-hyeon 작업
 
@@ -21,7 +22,9 @@ const HomeStack = createNativeStackNavigator();
 const AlignmentStack = createNativeStackNavigator();
 const MapsStack = createNativeStackNavigator();
 const MypageStack = createNativeStackNavigator();
+const TermpageStack = createNativeStackNavigator();       // hong-da-hyeon 작업
 const LoginStack = createNativeStackNavigator();      // hong-da-hyeon 작업
+
 
 const screenOptionStyle = {
   headerStyle: {
@@ -109,6 +112,7 @@ const MapsStackNavigator = () => {
   );
 }
 
+// hong-da-hyeon 작업
 const MypageStackNavigator = () => {
   return (
     <Stack.Navigator screenOptions={screenOptionStyle}>
@@ -118,6 +122,13 @@ const MypageStackNavigator = () => {
         options={({navigation, route}) => ({
           headerLeft: null,
           headerTitle: 'skuniverse 님',
+        })}
+      />
+      <TermpageStack.Screen 
+        name="Termpage" 
+        component={TermpageScreen} 
+        options={({navigation, route}) => ({
+          headerLeft: null,
         })}
       />
     </Stack.Navigator>
