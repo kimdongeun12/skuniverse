@@ -11,9 +11,9 @@ const title = '이용약관';
 
 const ToTermPage = ({navigation}) => (
   <ImageBtnWrap>
-    <ImageButton title="" onPress = {() => navigation.navigate('Termpage')}>
+    <ImageButtonTerm title="" onPress = {() => navigation.navigate('Termpage')}>
     <TextStyleTerms>{title}</TextStyleTerms>
-    </ImageButton>
+    </ImageButtonTerm>
   </ImageBtnWrap>
 );
 
@@ -54,7 +54,7 @@ function Mypage({navigation}) {
             navigation = {navigation}
           />
       </View>
-      
+
     </View>
   );
 }
@@ -98,6 +98,7 @@ const styles = StyleSheet.create({
   },
   item1: {
     flex:0.2,
+    marginLeft: 10,
     alignItems: 'flex-start',     // layout에서 왼쪽에 배치
     justifyContent: 'flex-end'    // layout에서 아래족에 배치
   },
@@ -108,12 +109,19 @@ const styles = StyleSheet.create({
   },
   item3: {
     flex: 0.2,
+    marginLeft: 10,
+    marginBottom: 10,
     alignItems: 'flex-start',     // layout에서 왼쪽에 배치
     justifyContent: 'flex-end'    // layout에서 아래족에 배치
   }
 });
 
-// facebook, instagram, 이용약관 button
+// 이용약관 button
+const ImageButtonTerm = styled.TouchableOpacity`
+  marginLeft: 0px;
+`
+
+// facebook, instagram button
 const ImageButton = styled.TouchableOpacity`
   background-color: #ffffff;
   marginLeft: 10px;
@@ -135,18 +143,16 @@ const WrapCOL = styled.View`
 // 이용약관 text style
 const TextStyleTerms = styled.Text`
   font-size: 14px;
-  padding: 5px;
   color: #121212;
+  text-decoration: underline;
   font-weight: bold;
 `
 
 // 로그아웃 text style
 const TextStyleLogout = styled.Text`
   font-size: 14px;
-  padding: 5px;
   color: #121212;
   font-weight: bold;
-  marginLeft: 10px;
 `
 
 // facebook, instagram text style
@@ -182,6 +188,6 @@ const TextStyleSWversion = styled.Text`
 
 // 이용약관 버튼 wrap
 const ImageBtnWrap = styled.View`
-  padding: 0 8px 16px;
+  padding: 0px;
 `
 export default Mypage;

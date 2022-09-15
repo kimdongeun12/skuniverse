@@ -17,6 +17,7 @@ import MypageScreen from '../Screen/Mypage/Mypage';
 import TermpageScreen from '../Screen/Mypage/TermDetail/Termpage';             // hong-da-hyeon 작업
 
 import LoginScreen from '../Screen/Login/Login';            // hong-da-hyeon 작업
+import NewLoginScreen from '../Screen/Login/NewLogin';      // hong-da-hyeon 작업
 
 const Stack = createNativeStackNavigator();
 const HomeStack = createNativeStackNavigator();
@@ -25,6 +26,7 @@ const MapsStack = createNativeStackNavigator();
 const MypageStack = createNativeStackNavigator();
 const TermpageStack = createNativeStackNavigator();       // hong-da-hyeon 작업
 const LoginStack = createNativeStackNavigator();      // hong-da-hyeon 작업
+const NewLoginStack = createNativeStackNavigator();   // hong-da-hyeon 작업
 
 
 const screenOptionStyle = {
@@ -47,7 +49,14 @@ const LoginStackNavigator = () => {
           headerLeft: null,
           headerTitle: '로그인',
         })}
-        
+      />
+      <NewLoginStack.Screen 
+        name="NewLogin" 
+        component={NewLoginScreen} 
+        options={({navigation, route}) => ({
+          headerLeft: null,
+          headerTitle: '회원가입',
+        })}
       />
     </Stack.Navigator>
   );
