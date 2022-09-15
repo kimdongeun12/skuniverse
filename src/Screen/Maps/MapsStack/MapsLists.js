@@ -103,7 +103,7 @@ function MapsLists({navigation , route}) {
       <ListsItem
         data={ItemLists}
         renderItem={({item}) => <MapItems title={item.fclty_nm} location = {item.addr}/>}
-        keyExtractor={item => item.ca_no}
+        keyExtractor={(item , index) => index}
       />
     </MapsWrap>
   );
