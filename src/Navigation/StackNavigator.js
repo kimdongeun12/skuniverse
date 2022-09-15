@@ -14,11 +14,14 @@ import MapsListsDetail from '../Screen/Maps/MapsStack/MapsListsDetail';
 
 import MypageScreen from '../Screen/Mypage/Mypage';
 
+import LoginScreen from '../Screen/Login/Login';            // hong-da-hyeon 작업
+
 const Stack = createNativeStackNavigator();
 const HomeStack = createNativeStackNavigator();
 const AlignmentStack = createNativeStackNavigator();
 const MapsStack = createNativeStackNavigator();
 const MypageStack = createNativeStackNavigator();
+const LoginStack = createNativeStackNavigator();      // hong-da-hyeon 작업
 
 const screenOptionStyle = {
   headerStyle: {
@@ -28,6 +31,23 @@ const screenOptionStyle = {
   headerBackTitle: "Back",
 };
 
+
+// hong-da-hyeon 작업
+const LoginStackNavigator = () => {
+  return (
+    <Stack.Navigator screenOptions={screenOptionStyle}>
+      <LoginStack.Screen 
+        name="Login" 
+        component={LoginScreen} 
+        options={({navigation, route}) => ({
+          headerLeft: null,
+          headerTitle: '로그인',
+        })}
+        
+      />
+    </Stack.Navigator>
+  );
+}
 
 const HomeStackNavigator = () => {
   return (
@@ -97,11 +117,12 @@ const MypageStackNavigator = () => {
         component={MypageScreen} 
         options={({navigation, route}) => ({
           headerLeft: null,
-          headerTitle: '앱이름',
+          headerTitle: 'skuniverse 님',
         })}
       />
     </Stack.Navigator>
   );
 }
 
-export { HomeStackNavigator, AlignmentStackNavigator ,MapsStackNavigator , MypageStackNavigator };
+// LoginStackNavigator 추가 : hong-da-hyeon 작업
+export { LoginStackNavigator, HomeStackNavigator, AlignmentStackNavigator ,MapsStackNavigator , MypageStackNavigator };
