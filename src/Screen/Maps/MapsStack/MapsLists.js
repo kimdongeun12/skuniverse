@@ -44,9 +44,9 @@ import axios from 'axios';
 //   },
 // ];
 
-const MapItems = ({title , location}) => (
+const MapItems = ({navigation ,title , location , detailParams}) => (
   <View>
-    <ListsItemBtn>
+    <ListsItemBtn onPress = {() => navigation.navigate('ItemDetail' , {detailParams})}>
       <ItemImgWrap>
         <ItemImage
         source={{
@@ -67,7 +67,7 @@ const MapItems = ({title , location}) => (
 function MapsLists({navigation , route}) {
   const { districtParams, otherParam } = route.params;
   const [ItemLists, SetSearch] = useState([]);
-  const url = `${storage.server}/culture-arts/district/${districtParams}/1`;
+  const url = `${storage.server}/culture-arts/district/${districtParams.district_cd}/1`;
   
   
   const searchDetail = async (url) => {
@@ -102,8 +102,13 @@ function MapsLists({navigation , route}) {
       </BannerWrap>
       <ListsItem
         data={ItemLists}
-        renderItem={({item}) => <MapItems title={item.fclty_nm} location = {item.addr}/>}
-        keyExtractor={item => item.ca_no}
+        renderItem={({item}) => <MapItems 
+        navigation={navigation} 
+        detailParams= { {fclty_nm : item.fclty_nm } }
+        title={item.fclty_nm} 
+        location = {item.addr}
+        />}
+        keyExtractor={(item , index) => index}
       />
     </MapsWrap>
   );
