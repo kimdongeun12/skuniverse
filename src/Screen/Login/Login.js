@@ -1,9 +1,10 @@
 // Login/Login.js : hong-da-hyeon 작업중
 
 import React, {useState}  from 'react';
-import {Text , View, StyleSheet, TextInput, Button, TouchableOpacity, StatusBar} from 'react-native';
+import {Text , View, StyleSheet, TextInput, Button, TouchableOpacity, StatusBar, Alert} from 'react-native';
 import styled from "styled-components";
 import storage from "../../storage"
+
 
 const ToNewLogin = ({navigation}) => (
     <ImageBtnWrap>
@@ -13,10 +14,13 @@ const ToNewLogin = ({navigation}) => (
     </ImageBtnWrap>
   );
 
-  
+
 const Login = ({navigation}) => {
+
+    // userId, userPW : 사용자가 입력하는 ID, PW가 담기는 변수(?)
     const [userId, setUserId] = useState('');
-  const [userPW, setuserPW] = useState('');
+    const [userPW, setuserPW] = useState('');
+
     return (
         <AligmentWrap>
             <LoginExplainWrap>
@@ -24,6 +28,7 @@ const Login = ({navigation}) => {
                 <AppExplanation>나에게 맞는 예술회관을 찾아보세요!</AppExplanation>
             </LoginExplainWrap>
 
+            
             <TextInput
                 style={StyleLoginBox.textInput1}
                 placeholder={'아이디'}
@@ -36,9 +41,11 @@ const Login = ({navigation}) => {
                 placeholder={'비밀번호'}
                 onChangeText={setuserPW}
                 value={userPW}
+                secureTextEntry={true} //--> 비번 * 해주는 것 같긴 하지만..
             />
             
-            <LoginButton>
+            <LoginButton
+            onPress={() => Alert.alert("id: " + userId + " pw : " + userPW)}>
                 <LoginTextWrap>
                     <TextLogin>로그인</TextLogin>
                 </LoginTextWrap>
