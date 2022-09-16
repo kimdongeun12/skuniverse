@@ -21,7 +21,7 @@ function Login ({navigation}) {
     const [userPW, setuserPW] = useState('');
 
     const GetUserUrl = `${storage.server}/users/login`;
-    //console.log(GetUserUrl);
+    //console.log(GetUserUrl);g
 
     const login = async (id, password) => {
       try {
