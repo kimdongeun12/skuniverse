@@ -17,8 +17,10 @@ const ToTermPage = ({navigation}) => (
 );
 
 
-function Mypage({navigation}) {
-  
+function Mypage({navigation, userId}) {
+
+  console.log(userId);
+
   return (
     <View style={styles.container}>
       

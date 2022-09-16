@@ -85,7 +85,7 @@ import axios from 'axios';
             
             <TextInput
                 style={StyleLoginBox.textInput2}
-                placeholder={'성별(여:1, 남:0)'}
+                placeholder={'성별(남:0, 여:1)'}
                 onChangeText={setuserSex}
                 value={userSex}
             />
@@ -129,6 +129,7 @@ const StyleLoginBox = StyleSheet.create({
     width: 300,
     borderWidth: 1,
     marginTop: 20,
+    color: '#121212',
     backgroundColor: '#fff',
     marginBottom: 5,
   },
@@ -136,19 +137,20 @@ const StyleLoginBox = StyleSheet.create({
     height: 40,
     width: 300,
     borderWidth: 1,
+    color: '#121212',
     backgroundColor: '#fff',
     marginBottom: 5,
   },
 });
 
-// Login + Explain Wrap
+// NewLogin + Explain Wrap
 const NewLoginExplainWrap = styled.View`
   justify-content: flex-start;
   align-items: flex-start;
   marginTop: 30px;
 `
 
-// 'Login' title
+// 'NewLogin' title
 const NewLoginTitle = styled.Text`
   font-size: 40px;
   color: #121212;
@@ -156,7 +158,7 @@ const NewLoginTitle = styled.Text`
   font-weight: bold;
 `
 
-// Login title 아래 설명
+// NewLogin title 아래 설명
 const AppExplanation = styled.Text`
   font-size: 15px;
   color: #121212;
@@ -178,7 +180,7 @@ const NewLoginTextWrap = styled.View`
 alignItems: center;
 `
 
-// Login Button에서 '로그인' text
+// NewLogin Button에서 '회원가입' text
 const TextNewLogin = styled.Text`
   font-size: 15px;
   color: #121212;
@@ -187,22 +189,4 @@ const TextNewLogin = styled.Text`
   font-weight: bold;
 `
 
-// // 회원가입 button
-// const ImageButtonNewLogin = styled.TouchableOpacity`
-// marginLeft: 0px;
-// `
-
-// // 회원가입 button wrap
-// const ImageBtnWrap = styled.View`
-// marginTop: 10px;
-// padding: 0 ;
-// `
-
-// // 회원가입 text
-// const TextStyleNewLogin = styled.Text`
-// font-size: 14px;
-// color: #454343;
-// font-weight: bold;
-// text-decoration: underline;
-// `
 export default NewLogin;

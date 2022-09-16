@@ -21,7 +21,7 @@ function Login ({navigation}) {
     const [userPW, setuserPW] = useState('');
 
     const GetUserUrl = `${storage.server}/users/login`;
-    //console.log(GetUserUrl);g
+    //console.log(GetUserUrl);
 
     const login = async (id, password) => {
       try {
@@ -34,8 +34,8 @@ function Login ({navigation}) {
           }
         })
         if(GetData.status == 200) {
-          
-          navigation.navigate('Home')
+
+          navigation.navigate('Mypage',{userId})
           console.log(GetData.status)
           console.log(GetData.data)
           SetToken(GetData.data.token)

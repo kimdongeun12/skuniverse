@@ -79,7 +79,7 @@ const HomeStackNavigator = () => {
   return (
     <Stack.Navigator screenOptions={screenOptionStyle}>
         
-        <LoginStack.Screen 
+        {/* <LoginStack.Screen 
           name="Login" 
           component={LoginScreen} 
           options={({navigation, route}) => ({
@@ -94,7 +94,7 @@ const HomeStackNavigator = () => {
             headerLeft: null,
             headerTitle: '회원가입',
           })}
-        />
+        /> */}
       <HomeStack.Screen 
         name="Home" 
         component={HomeScreen} 
@@ -158,12 +158,32 @@ const MapsStackNavigator = () => {
 const MypageStackNavigator = () => {
   return (
     <Stack.Navigator screenOptions={screenOptionStyle}>
+
+      <LoginStack.Screen 
+          name="Login" 
+          component={LoginScreen} 
+          options={({navigation, route}) => ({
+            headerLeft: null,
+            headerTitle: '로그인',
+          })}
+        />
+
+        <LoginStack.Screen 
+          name="NewLogin" 
+          component={NewLoginScreen} 
+          options={({navigation, route}) => ({
+            headerLeft: null,
+            headerTitle: '회원가입',
+          })}
+        />
+
       <MypageStack.Screen 
         name="Mypage" 
         component={MypageScreen} 
         options={({navigation, route}) => ({
           headerLeft: null,
           headerTitle: 'skuniverse 님',
+          //headerTitle: route.params.userId,
         })}
       />
       <MypageStack.Screen 
