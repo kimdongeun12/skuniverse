@@ -1,7 +1,7 @@
 // Login/Login.js : hong-da-hyeon 작업중
 
-import React from 'react';
-import {Text , View, TextInput, StyleSheet, Button, TouchableOpacity} from 'react-native';
+import React, {useState}  from 'react';
+import {Text , View, StyleSheet, TextInput, Button, TouchableOpacity, StatusBar} from 'react-native';
 import styled from "styled-components";
 import storage from "../../storage"
 
@@ -15,42 +15,40 @@ const ToNewLogin = ({navigation}) => (
 
   
 const Login = ({navigation}) => {
-    const [text, onChangeText] = React.useState("아이디");
-    const [number, onChangeNumber] = React.useState("비밀번호");
-  
+    const [userId, setUserId] = useState('');
+  const [userPW, setuserPW] = useState('');
     return (
         <AligmentWrap>
-            
             <LoginExplainWrap>
                 <LoginTitle>Login</LoginTitle>
                 <AppExplanation>나에게 맞는 예술회관을 찾아보세요!</AppExplanation>
             </LoginExplainWrap>
 
             <TextInput
-                style={StyleLoginBox.input1}
-                onChangeText={onChangeText}
-                value={text}
-            />
-            <TextInput
-                style={StyleLoginBox.input2}
-                onChangeText={onChangeNumber}
-                value={number}
-                keyboardType="numeric"
-                // secureTextEntry={true} --> 비번 * 해주는 것 같긴 하지만..
+                style={StyleLoginBox.textInput1}
+                placeholder={'아이디'}
+                onChangeText={setUserId}
+                value={userId}
             />
 
+            <TextInput
+                style={StyleLoginBox.textInput2}
+                placeholder={'비밀번호'}
+                onChangeText={setuserPW}
+                value={userPW}
+            />
+            
             <LoginButton>
                 <LoginTextWrap>
-                    <TextLogin style={{textAlgin: 'center'}}>로그인</TextLogin>
+                    <TextLogin>로그인</TextLogin>
                 </LoginTextWrap>
             </LoginButton>
 
             <ToNewLogin
                     navigation = {navigation}
                 />
-
         </AligmentWrap>
-    );
+    );  
 };
 
 // 전체 layout wrap
@@ -63,17 +61,22 @@ const AligmentWrap = styled.View`
 
 // 아이디 + 비밀번호 창
 const StyleLoginBox = StyleSheet.create({
-    input1: {
+    
+    textInput1: {               // 아이디창
       height: 40,
       width: 300,
       borderWidth: 1,
       marginTop: 20,
+      backgroundColor: '#fff',
+      marginBottom: 5,
     },
-    input2: {
-        height: 40,
-        width: 300,
-        borderWidth: 1,
-      },
+    textInput2: {               // 비밀번호창
+      height: 40,
+      width: 300,
+      borderWidth: 1,
+      backgroundColor: '#fff',
+      marginBottom: 5,
+    },
   });
 
 // Login + Explain Wrap
@@ -103,7 +106,7 @@ const AppExplanation = styled.Text`
 const LoginButton = styled.TouchableOpacity`
   height: 40px;
   width: 300px;
-  marginTop: 20px;
+  marginTop: 10px;
   background-color: #9AC4F8;
   color: #121212;
 `
