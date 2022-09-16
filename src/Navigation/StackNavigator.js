@@ -184,7 +184,7 @@ const MypageStackNavigator = () => {
         options={({navigation, route}) => ({
           headerLeft: null,
           //headerTitle: 'skuniverse 님',
-          headerTitle:route.params.IdOfUser,
+          headerTitle:route.params.IdOfUser+' 님',
         })}
       />
       <MypageStack.Screen 
