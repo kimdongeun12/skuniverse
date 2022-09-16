@@ -11,7 +11,7 @@ const Tab = createBottomTabNavigator();
 const BottomTabNavigator = ({navigation}) => {
   return (
     <Tab.Navigator initialRouteName="HomeStack">
-      <Tab.Screen name="LoginStack" 
+      {/* <Tab.Screen name="LoginStack" 
       component={LoginStackNavigator} 
       options={{
         headerShown: false,
@@ -20,7 +20,7 @@ const BottomTabNavigator = ({navigation}) => {
           <Icon name="person-circle" color={color} size={size} />
         ),
       }}
-      />
+      /> */}
       <Tab.Screen 
       name="HomeStack" 
       component={HomeStackNavigator} 

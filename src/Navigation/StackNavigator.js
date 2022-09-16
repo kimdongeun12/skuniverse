@@ -16,15 +16,15 @@ import MapsLists from '../Screen/Maps/MapsStack/MapsLists';
 import MypageScreen from '../Screen/Mypage/Mypage';
 import TermpageScreen from '../Screen/Mypage/TermDetail/Termpage';             // hong-da-hyeon 작업
 
-import LoginScreen from '../Screen/Login/Login';            // hong-da-hyeon 작업
-import NewLoginScreen from '../Screen/Login/NewLogin';      // hong-da-hyeon 작업
+import LoginScreen from '../LoginPage/Login';            // hong-da-hyeon 작업
+import NewLoginScreen from '../LoginPage/NewLogin';      // hong-da-hyeon 작업
 
 const Stack = createNativeStackNavigator();
 const HomeStack = createNativeStackNavigator();
 const AlignmentStack = createNativeStackNavigator();
 const MapsStack = createNativeStackNavigator();
 const MypageStack = createNativeStackNavigator();
-const TermpageStack = createNativeStackNavigator();       // hong-da-hyeon 작업
+//const TermpageStack = createNativeStackNavigator();       // hong-da-hyeon 작업
 const LoginStack = createNativeStackNavigator();      // hong-da-hyeon 작업
 const NewLoginStack = createNativeStackNavigator();   // hong-da-hyeon 작업
 
@@ -136,7 +136,7 @@ const MypageStackNavigator = () => {
           headerTitle: 'skuniverse 님',
         })}
       />
-      <TermpageStack.Screen 
+      <MypageStack.Screen 
         name="Termpage" 
         component={TermpageScreen} 
         options={({navigation, route}) => ({
