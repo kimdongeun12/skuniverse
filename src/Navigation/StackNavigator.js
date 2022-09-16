@@ -176,14 +176,15 @@ const MypageStackNavigator = () => {
             headerTitle: '회원가입',
           })}
         />
-
+      
+      {/* headerTitle -> Login을 통해 넘어온 ID값*/}
       <MypageStack.Screen 
         name="Mypage" 
         component={MypageScreen} 
         options={({navigation, route}) => ({
           headerLeft: null,
-          headerTitle: 'skuniverse 님',
-          //headerTitle: route.params.userId,
+          //headerTitle: 'skuniverse 님',
+          headerTitle:route.params.IdOfUser,
         })}
       />
       <MypageStack.Screen 
@@ -197,5 +198,4 @@ const MypageStackNavigator = () => {
   );
 }
 
-// LoginStackNavigator 추가 : hong-da-hyeon 작업
 export { HomeStackNavigator, AlignmentStackNavigator ,MapsStackNavigator , MypageStackNavigator };

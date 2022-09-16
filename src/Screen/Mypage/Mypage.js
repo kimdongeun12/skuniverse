@@ -16,16 +16,26 @@ const ToTermPage = ({navigation}) => (
   </ImageBtnWrap>
 );
 
+const ToLogout = ({navigation}) => (
+  <ImageBtnWrap>
+    <ImageButtonLogout  title="" onPress = {() => navigation.navigate('Login')}>
+      <TextStyleLogout>로그아웃</TextStyleLogout>
+    </ImageButtonLogout>
+  </ImageBtnWrap>
+);
 
-function Mypage({navigation, userId}) {
-
-  console.log(userId);
+function Mypage({navigation, route}) {
+  const { IdOfUser, IdOfUserParam } = route.params;
+  console.log('user : ', IdOfUser);
+  // IdOfUser : Login Page에서 넘어온 ID값
 
   return (
     <View style={styles.container}>
       
       <View style={styles.item1}>
-        <TextStyleLogout>로그아웃</TextStyleLogout>
+        <ToLogout
+          navigation = {navigation}
+        />
       </View>
 
       <View style={styles.item2}>
@@ -91,6 +101,11 @@ const ImageButtonTerm = styled.TouchableOpacity`
   marginLeft: 0px;
 `
 
+// 로그아웃 button
+const ImageButtonLogout = styled.TouchableOpacity`
+  marginLeft: 0px;
+`
+
 // facebook, instagram button
 const ImageButton = styled.TouchableOpacity`
   background-color: #ffffff;
@@ -122,6 +137,7 @@ const TextStyleTerms = styled.Text`
 const TextStyleLogout = styled.Text`
   font-size: 14px;
   color: #121212;
+  text-decoration: underline;
   font-weight: bold;
 `
 
@@ -161,7 +177,7 @@ const TextStyleSWversion = styled.Text`
   padding: 10px;
 `
 
-// 이용약관 버튼 wrap
+// 이용약관, 로그아웃 버튼 wrap
 const ImageBtnWrap = styled.View`
   padding: 0px;
 `

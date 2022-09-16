@@ -34,8 +34,7 @@ function Login ({navigation}) {
           }
         })
         if(GetData.status == 200) {
-
-          navigation.navigate('Mypage',{userId})
+          navigation.navigate('Mypage',{IdOfUser : userId})
           console.log(GetData.status)
           console.log(GetData.data)
           SetToken(GetData.data.token)
