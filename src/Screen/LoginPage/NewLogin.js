@@ -5,9 +5,9 @@ import styled from "styled-components";
 import storage from "../../storage"
 import axios from 'axios';
 
- function NewLogin() {
+ function NewLogin({navigation}) {
 
-  const [Token, SetToken] = useState([]);
+    const [Token, SetToken] = useState([]);
 
     // userId, userPW : 사용자가 입력하는 ID, PW가 담기는 변수(?)
     const [userId, setUserId] = useState('');
@@ -16,21 +16,34 @@ import axios from 'axios';
     const [userFrom, setuserFrom] = useState('');
     const [userAge, setuserAge] = useState('');
 
-    const GetUserUrl = `${storage.server}/users/login`;
-    //console.log(GetUserUrl);g
+    const PushUserUrl = `${storage.server}/users`;
+    //console.log(PushUserUrl);
 
-    const login = async (id, password) => {
+    const newlogin = async (id, password, sex, nationality, age) => {
+      console.log(PushUserUrl);
       try {
         let GetData = await axios({
           method: 'POST',
-          url: GetUserUrl,
+          url: PushUserUrl,
           data: {
             id: id,
-            password: password
+            password: password,
+            sex: sex,
+            age: age,
+            nationality: nationality
           }
         })
-        if(GetData.status == 200) {
-          navigation.navigate('Home')
+        console.log(GetData.status);
+        
+        // 우선.. 데이터 몇개 입력안했을때 그냥 db에 저장되는것 같아서 따로 한번더 뺴줌
+        if(userId=="" || userPW=="" || userAge=="" || userFrom=="" || userSex==""){
+          alert("요청 데이터 오류(데이터 부족 혹은 아이디 중복)")
+        }
+
+        // 성공시
+        if(GetData.status == 201) {
+          
+          navigation.navigate('Login')        // 회원가입 성공 시 : Login으로 이동
           console.log(GetData.status)
           console.log(GetData.data)
           SetToken(GetData.data.token)
@@ -39,20 +52,20 @@ import axios from 'axios';
       } catch(err) {
         console.log(err);
        if(err.response.status == 400) {
-         alert("아이디 혹은 비밀번호를 입력해주세요.")
+         alert("요청 데이터 오류(데이터 부족 혹은 아이디 중복)")
        }
        else {
-         alert("아이디 혹은 비밀번호를 틀렸습니다.")
+         alert("서버 에러")
        }
       }
     };
 
    return (
     <NewLoginWrap>
-            <LoginExplainWrap>
-                <LoginTitle>회원가입</LoginTitle>
+            <NewLoginExplainWrap>
+                <NewLoginTitle>회원가입</NewLoginTitle>
                 <AppExplanation>나의 회원정보를 입력해주세요!</AppExplanation>
-            </LoginExplainWrap>
+            </NewLoginExplainWrap>
 
             
             <TextInput
@@ -91,12 +104,13 @@ import axios from 'axios';
                 value={userAge}
             />
 
-            <LoginButton
-              onPress={() => Alert.alert(userId + " " + userPW + " " + userSex + " " + userFrom + " " + userAge)}>
-                <LoginTextWrap>
-                    <TextLogin>로그인</TextLogin>
-                </LoginTextWrap>
-              </LoginButton>
+            {/* onPress={() => Alert.alert(userId + " " + userPW + " " + userSex + " " + userFrom + " " + userAge)} */}
+            <NewLoginButton
+              onPress = {() => newlogin(userId, userPW, userSex, userFrom, userAge)}>
+                <NewLoginTextWrap>
+                    <TextNewLogin>회원가입</TextNewLogin>
+                </NewLoginTextWrap>
+            </NewLoginButton>
           </NewLoginWrap>
    );
  }
@@ -128,14 +142,14 @@ const StyleLoginBox = StyleSheet.create({
 });
 
 // Login + Explain Wrap
-const LoginExplainWrap = styled.View`
+const NewLoginExplainWrap = styled.View`
   justify-content: flex-start;
   align-items: flex-start;
   marginTop: 30px;
 `
 
 // 'Login' title
-const LoginTitle = styled.Text`
+const NewLoginTitle = styled.Text`
   font-size: 40px;
   color: #121212;
   font-weight: 600;
@@ -150,8 +164,8 @@ const AppExplanation = styled.Text`
   font-weight: bold;
 `
 
-// Login Button
-const LoginButton = styled.TouchableOpacity`
+// NewLogin Button
+const NewLoginButton = styled.TouchableOpacity`
 height: 40px;
 width: 300px;
 marginTop: 10px;
@@ -159,13 +173,13 @@ background-color: #9AC4F8;
 color: #121212;
 `
 
-// Login Text Wrap : for Text center
-const LoginTextWrap = styled.View`
+// NewLogin Text Wrap : for Text center
+const NewLoginTextWrap = styled.View`
 alignItems: center;
 `
 
 // Login Button에서 '로그인' text
-const TextLogin = styled.Text`
+const TextNewLogin = styled.Text`
   font-size: 15px;
   color: #121212;
   font-weight: 200;
@@ -173,22 +187,22 @@ const TextLogin = styled.Text`
   font-weight: bold;
 `
 
-// 회원가입 button
-const ImageButtonNewLogin = styled.TouchableOpacity`
-marginLeft: 0px;
-`
+// // 회원가입 button
+// const ImageButtonNewLogin = styled.TouchableOpacity`
+// marginLeft: 0px;
+// `
 
-// 회원가입 button wrap
-const ImageBtnWrap = styled.View`
-marginTop: 10px;
-padding: 0 ;
-`
+// // 회원가입 button wrap
+// const ImageBtnWrap = styled.View`
+// marginTop: 10px;
+// padding: 0 ;
+// `
 
-// 회원가입 text
-const TextStyleNewLogin = styled.Text`
-font-size: 14px;
-color: #454343;
-font-weight: bold;
-text-decoration: underline;
-`
+// // 회원가입 text
+// const TextStyleNewLogin = styled.Text`
+// font-size: 14px;
+// color: #454343;
+// font-weight: bold;
+// text-decoration: underline;
+// `
 export default NewLogin;

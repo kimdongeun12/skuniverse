@@ -39,45 +39,46 @@ const screenOptionStyle = {
 
 
 // hong-da-hyeon 작업
-//  const LoginStackNavigator = () => {
-//    return (
-//       <Stack.Navigator screenOptions={screenOptionStyle}>
-//         <LoginStack.Screen 
-//           name="Login" 
-//           component={LoginScreen} 
-//           options={({navigation, route}) => ({
-//             headerLeft: null,
-//             headerTitle: '로그인',
-//           })}
-//         />
-//         <LoginStack.Screen 
-//           name="NewLogin" 
-//           component={NewLoginScreen} 
-//           options={({navigation, route}) => ({
-//             headerLeft: null,
-//             headerTitle: '회원가입',
-//           })}
-//         />
-//       </Stack.Navigator>
-//       // <Stack.Navigator initialRouteName="LoginStack">
-//       //     		<LoginStack.Screen
-//       //                 		name="LoginScreen"
-//       //                 		component={LoginScreen}
-//       //                 		options={{headerShown: false}}
-//       //          	/>
-//       //           <NewLoginStack.Screen
-//       //                 		name="NewLoginScreen"
-//       //                 		component={NewLoginScreen}
-//       //                 		options={{headerShown: false}}
-//       //           />
-//       // </Stack.Navigator>
-//    );
-//  }
+  // const LoginStackNavigator = () => {
+  //   return (
+  //      <Stack.Navigator screenOptions={screenOptionStyle}>
+  //        <LoginStack.Screen 
+  //          name="Login" 
+  //          component={LoginScreen} 
+  //          options={({navigation, route}) => ({
+  //            headerLeft: null,
+  //            headerTitle: '로그인',
+  //          })}
+  //        />
+  //        <LoginStack.Screen 
+  //          name="NewLogin" 
+  //          component={NewLoginScreen} 
+  //          options={({navigation, route}) => ({
+  //            headerLeft: null,
+  //            headerTitle: '회원가입',
+  //          })}
+  //        />
+  //      </Stack.Navigator>
+  //      // <Stack.Navigator initialRouteName="LoginStack">
+  //      //     		<LoginStack.Screen
+  //      //                 		name="LoginScreen"
+  //      //                 		component={LoginScreen}
+  //      //                 		options={{headerShown: false}}
+  //      //          	/>
+  //      //           <NewLoginStack.Screen
+  //      //                 		name="NewLoginScreen"
+  //      //                 		component={NewLoginScreen}
+  //      //                 		options={{headerShown: false}}
+  //      //           />
+  //      // </Stack.Navigator>
+  //   );
+  // }
 
 const HomeStackNavigator = () => {
   
   return (
     <Stack.Navigator screenOptions={screenOptionStyle}>
+        
         <LoginStack.Screen 
           name="Login" 
           component={LoginScreen} 

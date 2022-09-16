@@ -34,6 +34,7 @@ function Login ({navigation}) {
           }
         })
         if(GetData.status == 200) {
+          
           navigation.navigate('Home')
           console.log(GetData.status)
           console.log(GetData.data)
