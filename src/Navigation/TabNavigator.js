@@ -1,17 +1,18 @@
 
-import React from "react";
+import React, { useLayoutEffect } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import Icon from 'react-native-vector-icons/Ionicons';
-import { LoginStackNavigator, HomeStackNavigator, AlignmentStackNavigator ,MapsStackNavigator , MypageStackNavigator} from "./StackNavigator";    // hong-da-hyeon 작업
+import {  HomeStackNavigator, AlignmentStackNavigator ,MapsStackNavigator , MypageStackNavigator} from "./StackNavigator";    // hong-da-hyeon 작업
 
 
 const Tab = createBottomTabNavigator();
 
 const BottomTabNavigator = ({navigation}) => {
+
   return (
     <Tab.Navigator initialRouteName="HomeStack">
-      <Tab.Screen name="LoginStack" 
+      {/* <Tab.Screen name="LoginStack" 
       component={LoginStackNavigator} 
       options={{
         headerShown: false,
@@ -20,12 +21,13 @@ const BottomTabNavigator = ({navigation}) => {
           <Icon name="person-circle" color={color} size={size} />
         ),
       }}
-      />
+      /> */}
       <Tab.Screen 
       name="HomeStack" 
-      component={HomeStackNavigator} 
+      component={HomeStackNavigator}
       options={{
         headerShown: false,
+        tabBarVisible: true,
         title: '홈',
         tabBarIcon: ({color, size}) => (
           <Icon name="home-outline" color={color} size={size} />

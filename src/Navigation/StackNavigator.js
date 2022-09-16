@@ -75,6 +75,7 @@ const screenOptionStyle = {
 //  }
 
 const HomeStackNavigator = () => {
+  
   return (
     <Stack.Navigator screenOptions={screenOptionStyle}>
         <LoginStack.Screen 
