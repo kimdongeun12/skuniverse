@@ -16,8 +16,8 @@ import MapsLists from '../Screen/Maps/MapsStack/MapsLists';
 import MypageScreen from '../Screen/Mypage/Mypage';
 import TermpageScreen from '../Screen/Mypage/TermDetail/Termpage';             // hong-da-hyeon 작업
 
-import LoginScreen from '../LoginPage/Login';            // hong-da-hyeon 작업
-import NewLoginScreen from '../LoginPage/NewLogin';      // hong-da-hyeon 작업
+import LoginScreen from '../Screen/LoginPage/Login';            // hong-da-hyeon 작업
+import NewLoginScreen from '../Screen/LoginPage/NewLogin';      // hong-da-hyeon 작업
 
 const Stack = createNativeStackNavigator();
 const HomeStack = createNativeStackNavigator();

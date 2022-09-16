@@ -1,10 +1,8 @@
-// Login/Login.js : hong-da-hyeon 작업중
-
-import React, {useState}  from 'react';
+import React , {useState , useEffect} from 'react';
 import {Text , View, StyleSheet, TextInput, Button, TouchableOpacity, StatusBar, Alert} from 'react-native';
 import styled from "styled-components";
 import storage from "../../storage"
-
+import axios from 'axios';
 
 const ToNewLogin = ({navigation}) => (
     <ImageBtnWrap>
@@ -14,12 +12,44 @@ const ToNewLogin = ({navigation}) => (
     </ImageBtnWrap>
   );
 
+function Login ({navigation}) {
 
-const Login = ({navigation}) => {
+  const [Token, SetToken] = useState([]);
 
     // userId, userPW : 사용자가 입력하는 ID, PW가 담기는 변수(?)
     const [userId, setUserId] = useState('');
     const [userPW, setuserPW] = useState('');
+
+    const GetUserUrl = `${storage.server}/users/login`;
+    //console.log(GetUserUrl);
+
+    const login = async (id, password) => {
+      try {
+        let GetData = await axios({
+          method: 'POST',
+          url: GetUserUrl,
+          data: {
+            id: id,
+            password: password
+          }
+        })
+        if(GetData.status == 200) {
+          console.log(GetData.status)
+          console.log(GetData.data)
+          SetToken(GetData.data.token)
+        }
+        SetToken(GetData.data)
+      } catch(err) {
+        console.log(err);
+       if(err.response.status == 400) {
+         alert("아이디 혹은 비밀번호를 입력해주세요.")
+       }
+       else {
+         alert("아이디 혹은 비밀번호를 틀렸습니다.")
+       }
+      }
+    };
+  
 
     return (
         <AligmentWrap>
@@ -43,9 +73,9 @@ const Login = ({navigation}) => {
                 value={userPW}
                 secureTextEntry={true} //--> 비번 * 해주는 것 같긴 하지만..
             />
-            
+            {/* onPress={() => Alert.alert("id: " + userId + " pw : " + userPW + PostData) */}
             <LoginButton
-            onPress={() => Alert.alert("id: " + userId + " pw : " + userPW)}>
+              onPress = {() => login(userId, userPW)}>
                 <LoginTextWrap>
                     <TextLogin>로그인</TextLogin>
                 </LoginTextWrap>
