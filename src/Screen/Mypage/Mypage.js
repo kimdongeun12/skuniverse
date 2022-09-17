@@ -18,7 +18,7 @@ const ToTermPage = ({navigation}) => (
 
 const ToLogout = ({navigation}) => (
   <ImageBtnWrap>
-    <ImageButtonLogout  title="" onPress = {() => navigation.navigate('Login')}>
+    <ImageButtonLogout  title="" onPress = {() => navigation.replace('Login')}>
       <TextStyleLogout>로그아웃</TextStyleLogout>
     </ImageButtonLogout>
   </ImageBtnWrap>

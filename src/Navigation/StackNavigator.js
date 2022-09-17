@@ -154,15 +154,6 @@ const MapsStackNavigator = () => {
   );
 }
 
-const getVisibility = (route, selectedIndex) => {
-  if (!route.state) return true;
-  let index = route.state.index;
-  if (index === selectedIndex) {
-      return false;
-  }
-  return true;
-};
-
 // hong-da-hyeon 작업
 const MypageStackNavigator = () => {
   return (
@@ -172,6 +163,7 @@ const MypageStackNavigator = () => {
           name="Login" 
           component={LoginScreen} 
           options={({navigation, route}) => ({
+            visible:false,
             tabBarVisible: false,
             headerLeft: null,
             headerTitle: '로그인',
@@ -182,7 +174,6 @@ const MypageStackNavigator = () => {
           name="NewLogin" 
           component={NewLoginScreen} 
           options={({navigation, route}) => ({
-            tabBarVisible: getVisibility(route, 1),
             headerLeft: null,
             headerTitle: '회원가입',
           })}

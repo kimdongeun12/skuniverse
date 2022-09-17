@@ -11,7 +11,7 @@ const Tab = createBottomTabNavigator();
 const BottomTabNavigator = ({navigation}) => {
 
   return (
-    <Tab.Navigator >
+    <Tab.Navigator initialRouteName="MypageStack">
       <Tab.Screen 
       name="HomeStack" 
       component={HomeStackNavigator}
