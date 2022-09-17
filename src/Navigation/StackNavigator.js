@@ -25,8 +25,8 @@ const AlignmentStack = createNativeStackNavigator();
 const MapsStack = createNativeStackNavigator();
 const MypageStack = createNativeStackNavigator();
 //const TermpageStack = createNativeStackNavigator();       // hong-da-hyeon 작업
-const LoginStack = createNativeStackNavigator();      // hong-da-hyeon 작업
-const NewLoginStack = createNativeStackNavigator();   // hong-da-hyeon 작업
+//const LoginStack = createNativeStackNavigator();      // hong-da-hyeon 작업
+//const NewLoginStack = createNativeStackNavigator();   // hong-da-hyeon 작업
 
 
 const screenOptionStyle = {
@@ -37,64 +37,10 @@ const screenOptionStyle = {
   headerBackTitle: "Back",
 };
 
-
-// hong-da-hyeon 작업
-  // const LoginStackNavigator = () => {
-  //   return (
-  //      <Stack.Navigator screenOptions={screenOptionStyle}>
-  //        <LoginStack.Screen 
-  //          name="Login" 
-  //          component={LoginScreen} 
-  //          options={({navigation, route}) => ({
-  //            headerLeft: null,
-  //            headerTitle: '로그인',
-  //          })}
-  //        />
-  //        <LoginStack.Screen 
-  //          name="NewLogin" 
-  //          component={NewLoginScreen} 
-  //          options={({navigation, route}) => ({
-  //            headerLeft: null,
-  //            headerTitle: '회원가입',
-  //          })}
-  //        />
-  //      </Stack.Navigator>
-  //      // <Stack.Navigator initialRouteName="LoginStack">
-  //      //     		<LoginStack.Screen
-  //      //                 		name="LoginScreen"
-  //      //                 		component={LoginScreen}
-  //      //                 		options={{headerShown: false}}
-  //      //          	/>
-  //      //           <NewLoginStack.Screen
-  //      //                 		name="NewLoginScreen"
-  //      //                 		component={NewLoginScreen}
-  //      //                 		options={{headerShown: false}}
-  //      //           />
-  //      // </Stack.Navigator>
-  //   );
-  // }
-
 const HomeStackNavigator = () => {
   
   return (
     <Stack.Navigator screenOptions={screenOptionStyle}>
-        
-        {/* <LoginStack.Screen 
-          name="Login" 
-          component={LoginScreen} 
-          options={({navigation, route}) => ({
-            headerLeft: null,
-            headerTitle: '로그인',
-          })}
-        />
-        <LoginStack.Screen 
-          name="NewLogin" 
-          component={NewLoginScreen} 
-          options={({navigation, route}) => ({
-            headerLeft: null,
-            headerTitle: '회원가입',
-          })}
-        /> */}
       <HomeStack.Screen 
         name="Home" 
         component={HomeScreen} 
@@ -159,18 +105,16 @@ const MypageStackNavigator = () => {
   return (
     <Stack.Navigator screenOptions={screenOptionStyle}>
 
-      <LoginStack.Screen 
+      <MypageStack.Screen 
           name="Login" 
           component={LoginScreen} 
           options={({navigation, route}) => ({
-            visible:false,
-            tabBarVisible: false,
             headerLeft: null,
             headerTitle: '로그인',
           })}
         />
 
-        <LoginStack.Screen 
+        <MypageStack.Screen 
           name="NewLogin" 
           component={NewLoginScreen} 
           options={({navigation, route}) => ({
@@ -189,6 +133,7 @@ const MypageStackNavigator = () => {
           headerTitle:route.params.IdOfUser+' 님',
         })}
       />
+      
       <MypageStack.Screen 
         name="Termpage" 
         component={TermpageScreen} 
