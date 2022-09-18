@@ -1,6 +1,6 @@
 
 import React , {useState , useEffect} from 'react';
-import {Text , View , Button , TouchableOpacity , FlatList , Image} from 'react-native';
+import {Text , View} from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
 import styled from "styled-components";
 import storage from "../../storage"
@@ -8,15 +8,13 @@ import axios from 'axios';
 
 // const ca_no = 1; // 문화예술회관 고유번호
 
-
-
 const MapListItem =  ({navigation , districtParams , imageUrl , title , width}) => (
-  <ImageBtnWrap width = {width}>
+  <ImageBtnWrap width = {width} >
     <ImageButton title="" onPress = {() => navigation.navigate('MapsLists' , {districtParams , imageUrl})}>
       <ItemImgWrap>
         <ItemImage
         source={{
-          uri: `https://district-symbols.s3.ap-northeast-2.amazonaws.com/symbols/${imageUrl.itemCity}/${imageUrl.itemDistrict}.jpg`,
+          uri: imageUrl,
         }}
         resizeMode= "contain"
         />
@@ -75,6 +73,16 @@ function Maps({navigation}) {
   }, [SelectCity]);
   
 
+  const renderItem = ({item}) => (
+    <MapListItem
+      key={item.key}
+      navigation = {navigation}
+      title={item.district_nm}
+      imageUrl = { item.img_url}
+      districtParams={{district_cd : item.district_cd , district_nm : item.district_nm }}
+      width={containerWidth / numColumns}
+    />
+  )
 
   return (
     <MapsWrap horizontal={false}>
@@ -87,7 +95,6 @@ function Maps({navigation}) {
           valueField="city_cd"
           search={false}
           onChange={item => {
-            console.log(item.city_cd)
             SetCity(item.city_cd);
           }}
         />
@@ -96,15 +103,7 @@ function Maps({navigation}) {
         <ListsItem
           data={MapDistrictLists}
           onLayout={e => setContainerWidth(e.nativeEvent.layout.width)}
-          renderItem={({item}) => (
-            <MapListItem
-            navigation = {navigation}
-            title={item.district_nm}
-            imageUrl = { {itemCity : SelectCity , itemDistrict : item.district_cd}}
-            districtParams={{district_cd : item.district_cd , district_nm : item.district_nm }}
-            width={containerWidth / numColumns}
-          />
-          )}
+          renderItem={renderItem}
           keyExtractor={(item , index) => index}
           numColumns={numColumns}
         />
@@ -114,7 +113,7 @@ function Maps({navigation}) {
 }
 
 
-const MapsWrap = styled.View`
+const MapsWrap = styled.SafeAreaView`
   flex: 1;
   width: 100%;
   padding: 16px 8px 0;
@@ -128,6 +127,7 @@ const ListsItem = styled.FlatList`
 `
 const ImageBtnWrap = styled.View`
   width: ${(props) => props.width}px;
+  height: ${(props) => props.width}px;
   padding: 0 8px 16px;
 `
 

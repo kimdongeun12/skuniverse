@@ -65,9 +65,7 @@ const MapItems = ({navigation ,title , location , detailParams}) => (
 );
 
 function MapsLists({navigation , route}) {
-  const { districtParams, districtParam } = route.params;
-  const { imageUrl, imageUrlParam } = route.params;
-  console.log(imageUrl)
+  const { districtParams, otherParam } = route.params;
   const [ItemLists, SetSearch] = useState([]);
   
   const url = `${storage.server}/culture-arts/district/${districtParams.district_cd}/1`;
@@ -80,6 +78,8 @@ function MapsLists({navigation , route}) {
         method: 'GET',
         url: url,
       })
+      // console.log(GetData.data)
+      console.log(GetData.data)
       SetSearch(GetData.data)
     } catch(err) {
       console.log(err);
@@ -88,27 +88,27 @@ function MapsLists({navigation , route}) {
 
   useEffect(() => {
     searchDetail(url)
-  }, [districtParam]);
+  }, [otherParam]);
 
   return (
     <MapsWrap>
+      {console.log(ItemLists)}
       <BannerWrap>
         <BannerImage
         source={{
-          uri: `https://district-symbols.s3.ap-northeast-2.amazonaws.com/symbols/${imageUrl.itemCity}/${imageUrl.itemDistrict}.jpg`,
+          uri: 'https://cdn.pixabay.com/photo/2016/03/04/19/36/beach-1236581_1280.jpg',
         }}
-        resizeMode= "contain"
+        resizeMode= "cover"
         />
       </BannerWrap>
       <ListsItem
         data={ItemLists}
         renderItem={({item}) => <MapItems 
-          navigation={navigation} 
-          detailParams= { {fclty_nm : item.fclty_nm } }
-          title={item.fclty_nm} 
-          location = {item.addr}
-          />
-        }
+        navigation={navigation} 
+        detailParams= { {fclty_nm : item.fclty_nm , ca_no : item.ca_no } }
+        title={item.fclty_nm} 
+        location = {item.addr}
+        />}
         keyExtractor={(item , index) => index}
       />
     </MapsWrap>
