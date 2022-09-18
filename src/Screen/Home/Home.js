@@ -9,6 +9,7 @@ import { SafeAreaView,
   Linking } from 'react-native';
 
 import { SliderBox } from 'react-native-image-slider-box';
+
 import Card1 from 'skuniverse/Assets/images/Card1.jpg';
 import Card2 from 'skuniverse/Assets/images/Card2.jpg';
 import Card3 from 'skuniverse/Assets/images/Card3.jpg';
@@ -28,7 +29,7 @@ function Home() {
           autoplay
           circleLoop /> 
         <Text style={styles.text}>
-          수고하셨어요. 우철선생님.
+          Hi~~!!! I'm ARTTA ^^~
         </Text>
         <TouchableOpacity style = {styles.card1}
         onPress = {() => Linking.openURL('https://www.mnuri.kr/munhwa/introduceNuri.do')}>
