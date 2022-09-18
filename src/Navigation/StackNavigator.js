@@ -14,15 +14,20 @@ import MapsScreen from '../Screen/Maps/Maps';
 import MapsLists from '../Screen/Maps/MapsStack/MapsLists';
 
 import MypageScreen from '../Screen/Mypage/Mypage';
+import TermpageScreen from '../Screen/Mypage/TermDetail/Termpage';             // hong-da-hyeon 작업
 
-import LoginScreen from '../Screen/Login/Login';            // hong-da-hyeon 작업
+import LoginScreen from '../Screen/LoginPage/Login';            // hong-da-hyeon 작업
+import NewLoginScreen from '../Screen/LoginPage/NewLogin';      // hong-da-hyeon 작업
 
 const Stack = createNativeStackNavigator();
 const HomeStack = createNativeStackNavigator();
 const AlignmentStack = createNativeStackNavigator();
 const MapsStack = createNativeStackNavigator();
 const MypageStack = createNativeStackNavigator();
-const LoginStack = createNativeStackNavigator();      // hong-da-hyeon 작업
+//const TermpageStack = createNativeStackNavigator();       // hong-da-hyeon 작업
+//const LoginStack = createNativeStackNavigator();      // hong-da-hyeon 작업
+//const NewLoginStack = createNativeStackNavigator();   // hong-da-hyeon 작업
+
 
 const screenOptionStyle = {
   headerStyle: {
@@ -32,25 +37,8 @@ const screenOptionStyle = {
   headerBackTitle: "Back",
 };
 
-
-// hong-da-hyeon 작업
-const LoginStackNavigator = () => {
-  return (
-    <Stack.Navigator screenOptions={screenOptionStyle}>
-      <LoginStack.Screen 
-        name="Login" 
-        component={LoginScreen} 
-        options={({navigation, route}) => ({
-          headerLeft: null,
-          headerTitle: '로그인',
-        })}
-        
-      />
-    </Stack.Navigator>
-  );
-}
-
 const HomeStackNavigator = () => {
+  
   return (
     <Stack.Navigator screenOptions={screenOptionStyle}>
       <HomeStack.Screen 
@@ -112,20 +100,49 @@ const MapsStackNavigator = () => {
   );
 }
 
+// hong-da-hyeon 작업
 const MypageStackNavigator = () => {
   return (
     <Stack.Navigator screenOptions={screenOptionStyle}>
+
+      <MypageStack.Screen 
+          name="Login" 
+          component={LoginScreen} 
+          options={({navigation, route}) => ({
+            headerLeft: null,
+            headerTitle: '로그인',
+          })}
+        />
+
+        <MypageStack.Screen 
+          name="NewLogin" 
+          component={NewLoginScreen} 
+          options={({navigation, route}) => ({
+            headerLeft: null,
+            headerTitle: '회원가입',
+          })}
+        />
+      
+      {/* headerTitle -> Login을 통해 넘어온 ID값*/}
       <MypageStack.Screen 
         name="Mypage" 
         component={MypageScreen} 
         options={({navigation, route}) => ({
           headerLeft: null,
-          headerTitle: 'skuniverse 님',
+          //headerTitle: 'skuniverse 님',
+          headerTitle:route.params.IdOfUser+' 님',
+        })}
+      />
+      
+      <MypageStack.Screen 
+        name="Termpage" 
+        component={TermpageScreen} 
+        options={({navigation, route}) => ({
+          headerLeft: null,
         })}
       />
     </Stack.Navigator>
   );
 }
 
-// LoginStackNavigator 추가 : hong-da-hyeon 작업
-export { LoginStackNavigator, HomeStackNavigator, AlignmentStackNavigator ,MapsStackNavigator , MypageStackNavigator };
+export { HomeStackNavigator, AlignmentStackNavigator ,MapsStackNavigator , MypageStackNavigator };

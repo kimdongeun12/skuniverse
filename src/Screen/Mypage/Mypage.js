@@ -6,87 +6,69 @@ import storage from "./../../storage"
 import axios from 'axios';
 
 const ca_no = 1; // 문화예술회관 고유번호
-const url = 'https://www.instagram.com/arkokorea/';   // 한국문화예술위원회 instagram url
+const title = '이용약관';
 
+const ToTermPage = ({navigation}) => (
+  <ImageBtnWrap>
+    <ImageButtonTerm title="" onPress = {() => navigation.navigate('Termpage')}>
+    <TextStyleTerms>{title}</TextStyleTerms>
+    </ImageButtonTerm>
+  </ImageBtnWrap>
+);
 
-function Mypage() {
-  //const url = `${storage.server}/culture-arts/${ca_no}`;
-  //searchDetail(url);
-  //console.log(url);
+const ToLogout = ({navigation}) => (
+  <ImageBtnWrap>
+    <ImageButtonLogout  title="" onPress = {() => navigation.replace('Login')}>
+      <TextStyleLogout>로그아웃</TextStyleLogout>
+    </ImageButtonLogout>
+  </ImageBtnWrap>
+);
+
+function Mypage({navigation, route}) {
+  const { IdOfUser, IdOfUserParam } = route.params;
+  console.log('user : ', IdOfUser);
+  // IdOfUser : Login Page에서 넘어온 ID값
+
   return (
     <View style={styles.container}>
+      
       <View style={styles.item1}>
-        <TextStyle_terms_logout>로그아웃</TextStyle_terms_logout>
+        <ToLogout
+          navigation = {navigation}
+        />
       </View>
+
       <View style={styles.item2}>
         <WrapCOL>
+
           <ButtonwrapROW>
-            <ImageButton
-              title= "Facebook"
-              onPress={() => Linking.openURL('https://www.facebook.com/ARKO1004')}
-            />
-            <ImageButton
-              title= "Instagram"
-              onPress={() => Linking.openURL('https://www.instagram.com/arkokorea')}
-            />
+            <ImageButton title="" onPress = {() => Linking.openURL('https://www.facebook.com/ARKO1004/')}>
+              <TextStyleFaceInsta>facebook</TextStyleFaceInsta>
+            </ImageButton>
+            <ImageButton title="" onPress = {() => Linking.openURL('https://www.instagram.com/arkokorea/')}>
+              <TextStyleFaceInsta>instagram</TextStyleFaceInsta>
+            </ImageButton>
           </ButtonwrapROW>
-          <TextStyle_title>문화예술데이터재단</TextStyle_title>
-          <TextStyle_tel_email>[TEL] 010-1234-5678</TextStyle_tel_email>
-          <TextStyle_tel_email>[EMAIL] abcd@gmail.com</TextStyle_tel_email>
-          <TextStyle_SWversion>소프트웨어 버전 : v1.0 </TextStyle_SWversion>
+
+          <TextStyleButton title="" onPress = {() => Linking.openURL('https://www.arko.or.kr/')}>
+            <TextStyleText>문화예술데이터재단</TextStyleText>
+          </TextStyleButton>
+          <TextStyleTelEmail>[TEL] 010-1234-5678</TextStyleTelEmail>
+          <TextStyleTelEmail>[EMAIL] abcd@gmail.com</TextStyleTelEmail>
+          <TextStyleSWversion>소프트웨어 버전 : v1.0 </TextStyleSWversion>
+
         </WrapCOL>
       </View>
+
       <View style={styles.item3}>
-        {/* <ImageButtons title="" onPress = {() => navigation.navigate('이용약관')}>
-          <Text>이용약관</Text>
-        </ImageButtons> */}
-        <TextStyle_terms_logout>문화누리카드 이용약관</TextStyle_terms_logout>
-          {/* title= "문화누리카드 이용약관"
-          color="#E91E63"
-          onPress = {() => Alert.alert("[문화누리카드 이용약관]", "블라블라블라블라블라블라")} */}
+        <ToTermPage
+            navigation = {navigation}
+          />
       </View>
+
     </View>
   );
 }
-
-// const searchDetail = async (url) => {
-//   try {
-//       console.log(url);
-//       let temp = await axios({
-//         method: 'GET',
-//         url:url,
-//       })
-//       temp = temp.data[0]
-//       const cultureArt = {
-//         SN: temp.SN,
-//         ADDR: temp.ADDR,
-//         ADSTRD_NM: temp.ADSTRD_NM,
-//         CINEMA_NM: temp.CINEMA_NM,
-//         CTPRVN_CD: temp.CTPRVN_CD,
-//         EDUSPNTD_NM: temp.EDUSPNTD_NM,
-//         EHBLL_NM: temp.EHBLL_NM,
-//         FAX_NO: temp.FAX_NO,
-//         FCLTY_NM: temp.FCLTY_NM,
-//         HMPG_ADDR: temp.HMPG_ADDR,
-//         INSTT_NM: temp.INSTT_NM,
-//         LA_VAL: temp.LA_VAL,
-//         LO_VAL: temp.LO_VAL,
-//         OPNNG_YEAR_YY: temp.OPNNG_YEAR_YY,
-//         RPRSNTV_NM: temp.RPRSNTV_NM,
-//     };
-//     console.log(cultureArt)
-//   } catch(err) {
-//     console.log(err);
-//   }
-// };
-
-const ImageButtons = styled.TouchableOpacity`
-  flex: 1;
-  background-color: #ffffff;
-  padding: 16px;
-  margin-top: 8px;
-  border-radius: 8px;
-`
 
 // - layout을 가로로 3등분
 const styles = StyleSheet.create({
@@ -96,6 +78,7 @@ const styles = StyleSheet.create({
   },
   item1: {
     flex:0.2,
+    marginLeft: 10,
     alignItems: 'flex-start',     // layout에서 왼쪽에 배치
     justifyContent: 'flex-end'    // layout에서 아래족에 배치
   },
@@ -106,25 +89,30 @@ const styles = StyleSheet.create({
   },
   item3: {
     flex: 0.2,
+    marginLeft: 10,
+    marginBottom: 10,
     alignItems: 'flex-start',     // layout에서 왼쪽에 배치
     justifyContent: 'flex-end'    // layout에서 아래족에 배치
   }
 });
 
-// const MypageWrap = styled.View`
-//   flex: 1;
-//   flexDirection: row;
-//   align-items: flex-end;
-// `
-
-// facebook, instagram button
-const ImageButton = styled.Button`
-  padding: 16px;
-  font-size: 10px;
-  font-weight: 100;
+// 이용약관 button
+const ImageButtonTerm = styled.TouchableOpacity`
+  marginLeft: 0px;
 `
 
-// button 2개를 row로 묶기
+// 로그아웃 button
+const ImageButtonLogout = styled.TouchableOpacity`
+  marginLeft: 0px;
+`
+
+// facebook, instagram button
+const ImageButton = styled.TouchableOpacity`
+  background-color: #ffffff;
+  marginLeft: 10px;
+`
+
+// button 2개를 row로 묶기 (facebook, instagram)
 const ButtonwrapROW = styled.View`
   align-items: flex-end;
   flexDirection: row;
@@ -137,24 +125,45 @@ const WrapCOL = styled.View`
   align-itmes: flex-end;
 `
 
-// 이용약관, 로그아웃 text style
-const TextStyle_terms_logout = styled.Text`
-  padding: 12px;
+// 이용약관 text style
+const TextStyleTerms = styled.Text`
   font-size: 14px;
-  color: 'rgb(45,45,40)';
-  font-weight: 500;
+  color: #121212;
+  text-decoration: underline;
+  font-weight: bold;
+`
+
+// 로그아웃 text style
+const TextStyleLogout = styled.Text`
+  font-size: 14px;
+  color: #121212;
+  text-decoration: underline;
+  font-weight: bold;
+`
+
+// facebook, instagram text style
+const TextStyleFaceInsta = styled.Text`
+  font-size: 14px;
+  padding: 5px;
+  color: #121212;
+  font-weight: bold;
+`
+
+// 문화예술데이터재단 button
+const TextStyleButton = styled.TouchableOpacity`
 `
 
 // '문화예술데이터재단' text style
-const TextStyle_title = styled.Text`
+const TextStyleText = styled.Text`
   font-size: 20px;
-  color: #121212;
+  color: #0091d4;
   font-weight: 600;
   padding: 10px;
+  text-decoration: underline;
 `
 
 // tel, email text style
-const TextStyle_tel_email = styled.Text`
+const TextStyleTelEmail = styled.Text`
   font-size: 15px;
   color: #121212;
   font-weight: 500;
@@ -162,17 +171,14 @@ const TextStyle_tel_email = styled.Text`
 `
 
 // sw version text style
-const TextStyle_SWversion = styled.Text`
+const TextStyleSWversion = styled.Text`
   font-size: 14px;
   color: #121212;
   padding: 10px;
 `
 
-// 후에 이용약관은 ... text button 식으로 둘 생각
-const Button_term = styled.Button`
-  padding: 3px;
-  font-size: 8px;
-  font-weight: 100;
+// 이용약관, 로그아웃 버튼 wrap
+const ImageBtnWrap = styled.View`
+  padding: 0px;
 `
-
 export default Mypage;
