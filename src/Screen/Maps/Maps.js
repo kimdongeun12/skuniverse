@@ -15,12 +15,12 @@ const MapListItem =  ({navigation , districtParams , imageUrl , title , width}) 
   <ImageBtnWrap width={width} >
     <ImageButton title="" onPress = {() => navigation.navigate('MapsLists' , {districtParams , imageUrl})}>
       <ItemImgWrap>
-        <ItemImage
+        {/* <ItemImage
         source={{
-          uri: "http://news.samsungdisplay.com/wp-content/uploads/2018/08/8.jpg", // 해당 극장 이미지가 들어갔으면 좋겠음 , 로고도 괜찮을거같아요
+          uri: imageUrl,
         }}
-        resizeMode= "cover"
-        />
+        resizeMode= "contain"
+        /> */}
       </ItemImgWrap>
       <ImageText>{title}</ImageText>
     </ImageButton>
@@ -169,8 +169,8 @@ const ListsItem = styled.FlatList`
 
 const ImageBtnWrap = styled.View`
   width: ${(props) => props.width}px;
-  height: 250px;
-  padding: 0 8px 16px;;
+  height: 200px;
+  padding: 0 8px 16px;
 `
 
 const ImageButton = styled.TouchableOpacity`
@@ -189,7 +189,6 @@ const ItemImgWrap = styled.View`
 const ItemImage = styled.Image`
   width: 100%;
   height: 100%;
-  border-radius: 8px
 `
 
 const ImageText = styled.Text`
