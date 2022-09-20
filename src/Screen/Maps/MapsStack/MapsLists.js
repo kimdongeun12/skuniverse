@@ -131,7 +131,7 @@ function MapsLists({navigation , route}) {
       <BannerWrap>
         <BannerImage
           source={{
-            uri : "http://news.samsungdisplay.com/wp-content/uploads/2018/08/8.jpg", // 해당 극장 이미지
+            uri : "http://news.samsungdisplay.com/wp-content/uploads/2018/08/8.jpg",
           }}
           resizeMode= "cover"
         />
@@ -159,7 +159,7 @@ const MapsWrap = styled.SafeAreaView`
 const BannerWrap = styled.View`
   width: 100%;
   padding: 0 8px;
-  margin: 16px 0;
+  margin-bottom: 16px;
   overflow: hidden;
 `
 const BannerImage = styled.Image`
