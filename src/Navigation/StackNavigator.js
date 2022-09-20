@@ -85,7 +85,7 @@ const MapsStackNavigator = () => {
         component={MapsLists}
         options={({navigation, route}) => ({
           headerLeft: null,
-          headerTitle: route.params.districtParams.district_nm,
+          headerTitle: route.params.districtParams.fclty_nm,
         })}
       />
       <MapsStack.Screen

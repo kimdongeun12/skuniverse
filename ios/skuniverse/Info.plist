@@ -26,6 +26,8 @@
 	<true/>
 	<key>NSAppTransportSecurity</key>
 	<dict>
+		<key>NSAllowsArbitraryLoads</key> 	<!-- http 접근 허용 -->
+		<true/>                  			<!-- http 접근 허용 -->
 		<key>NSExceptionDomains</key>
 		<dict>
 			<key>localhost</key>
@@ -69,5 +71,6 @@
 		<string>Octicons.ttf</string>
 		<string>Zocial.ttf</string>
 	</array>
+	
 </dict>
 </plist>
