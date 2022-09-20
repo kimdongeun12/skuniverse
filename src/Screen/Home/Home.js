@@ -1,16 +1,4 @@
 import React from 'react';
-<<<<<<< HEAD
-import {Text , View} from 'react-native';
-import styled from "styled-components";
-
-function Main() {
-  return (
-    <MainWrap>
-      <Text>Main</Text>
-    </MainWrap>
-  );
-}
-=======
 import { SafeAreaView, 
   View, 
   Image, 
@@ -25,7 +13,9 @@ import { SliderBox } from 'react-native-image-slider-box';
 import Card1 from 'skuniverse/Assets/images/Card1.jpg';
 import Card2 from 'skuniverse/Assets/images/Card2.jpg';
 import Card3 from 'skuniverse/Assets/images/Card3.jpg';
->>>>>>> 1a92508899221d6cc0e4c7c8ad959b793dbfa1d1
+import styled from "styled-components";
+
+
 
 
 

@@ -61,27 +61,6 @@ const screenOptionStyle = {
   headerTitle:  props => <LogoTitle {...props} />
 };
 
-<<<<<<< HEAD
-=======
-
-// hong-da-hyeon 작업
-const LoginStackNavigator = () => {
-  return (
-    <Stack.Navigator screenOptions={screenOptionStyle}>
-      <LoginStack.Screen 
-        name="Login" 
-        component={LoginScreen} 
-        // options={({navigation, route}) => ({
-        //   headerLeft: null,
-        //   headerTitle: '로그인',
-        // })}
-        
-      />
-    </Stack.Navigator>
-  );
-}
-
->>>>>>> 1a92508899221d6cc0e4c7c8ad959b793dbfa1d1
 const HomeStackNavigator = () => {
   
   return (
@@ -172,34 +151,15 @@ const MypageStackNavigator = () => {
       <MypageStack.Screen 
         name="Mypage" 
         component={MypageScreen} 
-<<<<<<< HEAD
         options={({navigation, route}) => ({
           headerLeft: null,
           //headerTitle: 'skuniverse 님',
           headerTitle:route.params.IdOfUser+' 님',
         })}
       />
-      
-      <MypageStack.Screen 
-        name="Termpage" 
-        component={TermpageScreen} 
-        options={({navigation, route}) => ({
-          headerLeft: null,
-        })}
-=======
-        // options={({navigation, route}) => ({
-        //   headerLeft: null,
-        //   headerTitle: 'skuniverse 님',
-        // })}
->>>>>>> 1a92508899221d6cc0e4c7c8ad959b793dbfa1d1
-      />
     </Stack.Navigator>
   );
 }
 
-<<<<<<< HEAD
-export { HomeStackNavigator, AlignmentStackNavigator ,MapsStackNavigator , MypageStackNavigator };
-=======
 // LoginStackNavigator 추가 : hong-da-hyeon 작업
-export { LoginStackNavigator, HomeStackNavigator, AlignmentStackNavigator ,MapsStackNavigator , MypageStackNavigator};
->>>>>>> 1a92508899221d6cc0e4c7c8ad959b793dbfa1d1
+export { HomeStackNavigator, AlignmentStackNavigator ,MapsStackNavigator , MypageStackNavigator};
