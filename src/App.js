@@ -5,13 +5,19 @@ import BottomTabNavigator from "./Navigation/TabNavigator";
 
 import styled from "styled-components";
 
+import { QueryClient, QueryClientProvider } from "react-query";
+const queryClient = new QueryClient();
+
  const App = () => {
   return (
-    <NavigationContainer>
-      {/* <AppWrap> */}
-        <BottomTabNavigator />
-      {/* </AppWrap> */}
-    </NavigationContainer>
+
+    <QueryClientProvider client={queryClient}>
+      <NavigationContainer>
+        {/* <AppWrap> */}
+          <BottomTabNavigator />
+        {/* </AppWrap> */}
+      </NavigationContainer>
+    </QueryClientProvider>
   )
  }
 // const AppWrap = styled.ScrollView`
