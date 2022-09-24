@@ -10,10 +10,15 @@ import { SafeAreaView,
 
 import { SliderBox } from 'react-native-image-slider-box';
 
+import HomeImage1 from 'skuniverse/Assets/images/HomeImage1.jpg';
+import HomeImage2 from 'skuniverse/Assets/images/HomeImage2.jpg';
+import HomeImage3 from 'skuniverse/Assets/images/HomeImage3.jpg';
 import Card1 from 'skuniverse/Assets/images/Card1.jpg';
 import Card2 from 'skuniverse/Assets/images/Card2.jpg';
 import Card3 from 'skuniverse/Assets/images/Card3.jpg';
+import Arrta_icon from 'skuniverse/Assets/images/Arrta_icon.jpg';
 import styled from "styled-components";
+import { black } from 'react-native-paper/lib/typescript/styles/colors';
 
 
 
@@ -24,16 +29,13 @@ function Home() {
   return ( <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scrollView}>
         <SliderBox style={styles.slider}
-          images={[
-            "http://www.naruart.or.kr/data/editor/2209/thumb-d981745cec2e6b1ec7eb71e7c80f4964_1662440580_7656_835x1181.jpg",
-            "https://www.gangnam.go.kr/upload/editor/2022/07/15/b7770c87-4871-4519-873f-c4e6bab3b4df.jpg",
-            "http://www.naruart.or.kr/data/editor/2209/thumb-783369461a8a681ad2294ca894f8a298_1662444664_0958_835x1178.jpg"
-          ]}
+          images = {[HomeImage1, HomeImage2, HomeImage3]}
           autoplay
           circleLoop /> 
-        <Text style={styles.text}>
+        {/* <Text style={styles.text}>
           Hi~~!!! I'm ARTTA ^^~
-        </Text>
+        </Text> */}
+        <View style={styles.Whitespace}></View>
         <TouchableOpacity style = {styles.card1}
         onPress = {() => Linking.openURL('https://www.mnuri.kr/munhwa/introduceNuri.do')}>
         <Image source = {Card1} style = {styles.card1}/> 
@@ -46,6 +48,11 @@ function Home() {
         onPress = {() => Linking.openURL('https://www.mnuri.kr/help/customerService/faq.do')}>
         <Image source = {Card3} style = {styles.card3}/>
         </TouchableOpacity>
+        <View style={styles.Blackspace}>
+          <Text style = {styles.text}>고객센터: 1800-abcd  (발신자부담)</Text>
+          <Text style = {styles.text2}>고객센터 운영시간{'\n'}평일 09:00 ~ 18:00(점심시간: 12:00 ~ 13:00)</Text>
+          <Text style = {styles.text3}>대표 : 권우철{'\n'}사업자등록번호 : abc-1234-abc{'\n'}주소 : 서울특별시 성북구 서경로 124{'\n'}ARTTA</Text>
+          </View>
       </ScrollView>
     </SafeAreaView>
   )
@@ -66,22 +73,48 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   text: {
-    fontSize: 30
+    padding: 22,
+    fontSize: 20,
+    fontWeight: 'bold',
+    color:'#868686',
+  },
+  text2: {
+    padding: 22,
+    fontSize: 16,
+    fontWeight: 'bold',
+    color:'#868686',
+  },
+  text3: {
+    padding: 22,
+    fontSize: 13,
+    fontWeight: 'bold',
+    color:'#868686',
+  },
+  Whitespace: {
+    flex: 1,
+    width: 100, 
+    height: 150
   },
   card1: {
     flex: 1,
-    width: 370, 
-    height: 450
+    width: 380, 
+    height: 470
   },
   card2: {
     flex: 1,
     width: 380, 
-    height: 360
+    height: 380
   },
   card3: {
     flex: 1,
     width: '100%', 
     height: 170
+  },
+  Blackspace: {
+    flex: 1,
+    width: 380, 
+    height: 270,
+    backgroundColor: '#f8f8f8',
   },
 });
 

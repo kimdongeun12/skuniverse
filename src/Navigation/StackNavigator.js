@@ -21,8 +21,7 @@ import TermpageScreen from '../Screen/Mypage/TermDetail/Termpage';             /
 import LoginScreen from '../Screen/LoginPage/Login';            // hong-da-hyeon 작업
 import NewLoginScreen from '../Screen/LoginPage/NewLogin';      // hong-da-hyeon 작업
 
-import Arrta from 'skuniverse/Assets/images/Arrta.png';
-//import Cheol from 'skuniverse/Assets/images/Cheol.jpg';
+import Arrta from 'skuniverse/Assets/images/Arrta_logo.png';
 import Card3 from 'skuniverse/Assets/images/Card3.jpg';
 
 
