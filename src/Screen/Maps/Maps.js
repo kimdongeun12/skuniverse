@@ -117,6 +117,7 @@ function Maps({navigation}) {
           maxHeight={300}
           labelField="city_nm"
           valueField="city_cd"
+          placeholder="시,도를 선택해주세요"
           search={false}
           onChange={item => {
             SetCity(item.city_cd);
@@ -129,6 +130,7 @@ function Maps({navigation}) {
           maxHeight={300}
           labelField="district_nm"
           valueField="district_cd"
+          placeholder="구를 선택해주세요"
           search={false}
           onChange={item => {
             SetDistrict(item.district_cd);
