@@ -94,6 +94,7 @@ const ItemDetailWrap = styled.SafeAreaView`
   flex: 1;
   width: 100%;
   padding: 16px 8px 0;
+  background-color: #ffffff;
 `
 const DetailScrollView = styled.ScrollView`
   flex: 1;
@@ -123,15 +124,17 @@ const ItemInfoLocation = styled.Text`
     text-align: center;
     margin-bottom: 8px;
 `
-
 const ItemInfoDesc = styled.View`
-    margin-bottom: 8px;
+    margin-top: 16px;
 `
 const ItemInfoDescDetailWrap = styled.View`
     flex: 1;
+    margin-bottom: 16px;
 `
 const ItemInfoDescDetailTitle = styled.Text`
-    font-size: 16px;
+    font-size: 18px;
+    margin-bottom: 8px;
+    font-weight: bold;
 `
 const ItemInfoDescDetailText = styled.Text`
     font-size: 14px;
