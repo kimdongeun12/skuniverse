@@ -5,26 +5,26 @@ import {Text , View,  Alert, StyleSheet,SafeAreaView,
 import styled from "styled-components";
 import { Chip, Button, RadioButton } from 'react-native-paper';
 import { ButtonGroup } from './ButtonGroup'
+import SwitchSelector from "react-native-switch-selector";
 
 const Separator = () => (
   <View style={styles.separator} />
 );
 
+const genderOptions = [
+  {label : '남성', value : 0},
+  {label : '여성', value : 1},
+];
+
+const nationalityOptions = [
+  {label : '내국인', value : 0},
+  {label : '외국인', value : 1},
+];
 
 const Alignment = () => {
   const [agegroup, setagegroup] = useState(0);
   const [genderselect, setgenderselect] = useState(0);
   const [nationality, setnationality] = useState(0);
-
-  const printgender = (item) => {
-    setgenderselect(0);
-    console.log(genderselect);
-  }
-
-  const printnation = (item) => {
-    setnationality(0);
-    console.log(nationality);
-  }
 
   return (
     
@@ -61,47 +61,33 @@ const Alignment = () => {
       <Separator />
 
       <View style={styles. btn2}>
-        <ButtonGroup buttons = {['남자', '여자']} 
-        doSomethingAferClick={printgender}
-        style={styles.btnset} mode="contained"
-        />
+      <SwitchSelector
+        options={genderOptions}
+        initial={0}
+        onChange={() => { setgenderselect(genderOptions.value); console.log(genderselect) }}
+        textColor= "#04020f"
+        selectedColor= "#0054ff"
+        buttonColor= "#e0ddf0"
+        borderColor= "#e0ddf0"
+        hasPadding
+      />
       </View>
-
-      {/* <View style={styles.btn2}>
-
-        <Button style={styles.btnset} mode="contained" onChange={(e) => checkOnlyOne(e.target)}
-          onPress={() => { setgenderselect(0); console.log(genderselect) }}>
-          <Text style={styles.chipText}>남성</Text>
-          
-        </Button>
-        <Button style={styles.btnset} mode="contained" onChange={(e) => checkOnlyOne(e.target)}
-          onPress={() => { setgenderselect(1); console.log(genderselect) }}>
-          <Text style={styles.chipText}>여성</Text>
-        </Button>
-
-      </View> */}
 
 
       <Separator />
 
-
       <View style={styles. btn3}>
-        <ButtonGroup buttons = {['내국인', '외국인']} 
-        doSomethingAferClick={printnation}
-        style={styles.btnset} mode="contained"
-        />
+      <SwitchSelector
+        options={nationalityOptions}
+        initial={0}
+        onChange={() => { setnationality(nationalityOptions.value); console.log(nationality) }}
+        textColor="#04020f"
+        selectedColor="#0054ff"
+        buttonColor="#e0ddf0"
+        borderColor="#e0ddf0"
+        hasPadding
+      />
       </View>
-
-      {/* <View style={styles.btn3}>
-
-        <Button style={styles.btnset} mode="contained" onPress={() => { setnationality(0); console.log(nationality) }}>
-          <Text style={styles.chipText}>내국인</Text>
-        </Button>
-        <Button style={styles.btnset} mode="contained" onPress={() => { setnationality(1); console.log(nationality) }}>
-          <Text style={styles.chipText}>외국인</Text>
-        </Button>
-      </View> */}
-
     </View>
 
   );
@@ -110,12 +96,10 @@ const Alignment = () => {
 
 
 const styles = StyleSheet.create({
-
   btnset: {
     backgroundColor: "#e0ddf0",
     margin: 4,
     borderRadius: 100,
-    
   },
 
   chipText: {

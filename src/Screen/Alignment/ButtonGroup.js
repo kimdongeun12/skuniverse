@@ -41,26 +41,26 @@ export const ButtonGroup = ({buttons, doSomethingAferClick}) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        flexDirection: 'row'
+        flexDirection: 'column',
+        justifyContent: 'space-around',
+        padding: 1,
     },
     button :{
-         
-        flexDirection: 'row',
-        alignItems: 'center',
-        backgroundColor : '#e0ddf0',
-        borderColor : 'black',
+        backgroundColor: "#e0ddf0",
+        margin: 4,
+        borderRadius: 100,
+        
     },
-    buttonActive : {
-           
-        flexDirection: 'row',
-        alignItems: 'center',
-        backgroundColor :'#0054FF',
-        borderColor : 'black',
+    buttonActive: {
+        backgroundColor: "#0054ff",
+        margin: 4,
+        borderRadius: 100,
+       
     },
     text:{
-        color: 'black'
+        color: "#04020f"
     },
     textActive : {
-        color : 'red',
+        color : "#04020f",
     }
 })
